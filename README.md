@@ -1,5 +1,9 @@
 # HaYTooL Wallpaper (v1.0.0) 🌍
 
+<p align="center">
+  <img src="logo.png" width="128">
+</p>
+
 *[For Turkish documentation, please scroll down. / Türkçe açıklama için aşağı kaydırın.]*
 
 HaYTooL Wallpaper is a lightweight and modern C# / .NET application that dynamically changes your Windows desktop background using high-resolution images from selected sources. **It runs completely silently in the background without showing any command prompt windows.**
@@ -37,6 +41,10 @@ The project consists of 2 main executables (`.exe`):
 ---
 
 # HaYTooL Wallpaper (v1.0.0) 🇹🇷
+
+<p align="center">
+  <img src="logo.png" width="128">
+</p>
 
 HaYTooL Wallpaper, Windows masaüstü arka planınızı belirlediğiniz kaynaklardan yüksek çözünürlüklü görsellerle dinamik olarak değiştiren, **hiçbir komut penceresi göstermeden tamamen sessiz çalışan** hafif ve modern bir C# / .NET uygulamasıdır.
 

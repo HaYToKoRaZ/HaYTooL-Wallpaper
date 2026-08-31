@@ -1,0 +1,38 @@
+name: Build and Release Single-File
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '10.0.x' 
+
+    - name: Build Setting.exe (Single File)
+      run: dotnet publish Setting/Setting.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o out/Setting
+
+    - name: Build HaYTooL-Wallpaper.exe (Single File)
+      run: dotnet publish HaYTooL-Wallpaper/HaYTooL-Wallpaper.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o out/Wallpaper
+
+    - name: Prepare Artifact Folder
+      run: |
+        mkdir release_files
+        copy out\Setting\Setting.exe release_files\
+        copy out\Wallpaper\HaYTooL-Wallpaper.exe release_files\
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: HaYTooL-Wallpaper-Build
+        path: release_files\

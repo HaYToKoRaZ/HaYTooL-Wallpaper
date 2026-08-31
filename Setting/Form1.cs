@@ -4,6 +4,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Net.Http;
+using System.Text.Json;
 using Shared;
 
 namespace Setting
@@ -18,6 +20,7 @@ namespace Setting
         private Label lblCategory;
         private ComboBox cbLanguage;
         private Label lblLanguage;
+        private LinkLabel lblUpdate;
 
         private IniHelper ini;
         private string iniPath;
@@ -36,11 +39,34 @@ namespace Setting
             InitializeComponentUI();
             LoadSettings();
             UpdateLanguage();
+            CheckForUpdates();
+        }
+
+        private async void CheckForUpdates()
+        {
+            try
+            {
+                using HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Add("User-Agent", "HaYTooL-Wallpaper-Updater");
+                string url = "https://api.github.com/repos/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest";
+                string json = await client.GetStringAsync(url);
+                using JsonDocument doc = JsonDocument.Parse(json);
+                string latestVersion = doc.RootElement.GetProperty("tag_name").GetString();
+
+                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.0.0")
+                {
+                    Invoke(new Action(() => {
+                        lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersion} (Click to download)" : $"Yeni sürüm mevcut: {latestVersion} (İndirmek için tıklayın)";
+                        lblUpdate.Visible = true;
+                    }));
+                }
+            }
+            catch { }
         }
 
         private void InitializeComponentUI()
         {
-            this.Size = new Size(350, 310);
+            this.Size = new Size(350, 330);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -67,6 +93,9 @@ namespace Setting
             btnSave = new Button { Location = new Point(20, 215), Width = 290, Height = 35 };
             btnSave.Click += BtnSave_Click;
 
+            lblUpdate = new LinkLabel { Location = new Point(20, 260), AutoSize = true, Visible = false };
+            lblUpdate.LinkClicked += (s, e) => { Process.Start(new ProcessStartInfo("https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases") { UseShellExecute = true }); };
+
             this.Controls.Add(lblLanguage);
             this.Controls.Add(cbLanguage);
             this.Controls.Add(lblSource);
@@ -75,6 +104,7 @@ namespace Setting
             this.Controls.Add(cbCategory);
             this.Controls.Add(chkStartup);
             this.Controls.Add(btnSave);
+            this.Controls.Add(lblUpdate);
         }
 
         private void UpdateLanguage()
