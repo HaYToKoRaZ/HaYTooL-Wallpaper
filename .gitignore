@@ -14,3 +14,6 @@ Release/
 # Wait, user said "gereksizleri aktarma", so we ignore compiled output.
 # If they want the Release binaries on GitHub, they should use GitHub Releases.
 App_Yayin/
+
+# AI Agent Configs
+.agents/
