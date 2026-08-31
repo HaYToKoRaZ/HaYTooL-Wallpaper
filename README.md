@@ -1,4 +1,4 @@
-# HaYTooL Wallpaper (v1.0.2) 🌍
+# HaYTooL Wallpaper (v1.0.3) 🌍
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -40,7 +40,7 @@ The project consists of 2 main executables (`.exe`):
 
 ---
 
-# HaYTooL Wallpaper (v1.0.2) 🇹🇷
+# HaYTooL Wallpaper (v1.0.3) 🇹🇷
 
 <p align="center">
   <img src="logo.png" width="128">
