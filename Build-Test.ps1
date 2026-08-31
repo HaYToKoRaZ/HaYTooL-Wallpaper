@@ -1,3 +1,6 @@
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+Set-Location $PSScriptRoot
+
 Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host "  HaYTooL-Wallpaper Derleme ve Test Scripti  " -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
