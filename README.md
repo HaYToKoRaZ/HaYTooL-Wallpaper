@@ -1,4 +1,4 @@
-# HaYTooL Wallpaper (v1.0.5) 🌍
+# HaYTooL Wallpaper (v1.0.6) 🌍
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -12,7 +12,7 @@
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.0.5-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.0.6-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub Downloads (latest release)" />
 </p>
@@ -53,7 +53,7 @@ The project consists of 2 main executables (`.exe`):
 
 ---
 
-# HaYTooL Wallpaper (v1.0.5) 🇹🇷
+# HaYTooL Wallpaper (v1.0.6) 🇹🇷
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -67,7 +67,7 @@ The project consists of 2 main executables (`.exe`):
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Yerel%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.0.5-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.0.6-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
 </p>
