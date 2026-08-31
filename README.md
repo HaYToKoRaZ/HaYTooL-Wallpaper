@@ -1,4 +1,4 @@
-# HaYTooL Wallpaper (v1.0.7) 🌍
+# HaYTooL Wallpaper (v1.0.8) 🌍
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -12,7 +12,7 @@
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.0.7-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.0.8-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub Downloads (latest release)" />
 </p>
@@ -33,7 +33,7 @@ HaYTooL Wallpaper is a lightweight and modern C# / .NET application that dynamic
   - **Dogs:** Cute dog photos.
 - **Smart Offline Support (Fallback):** Downloaded wallpapers are cached in `C:\0-wallpaper`. If your internet drops or a server error occurs, the application never crashes; it automatically picks a random old image from the cache and sets it as the wallpaper.
 - **Quota Management:** When the cache folder exceeds 100MB, it smartly manages space by deleting only the oldest files.
-- **System Startup:** Easily add to the registry to change the background automatically when the computer boots.
+- **System Startup & Context Menu:** Easily add to the registry to change the background automatically when the computer boots, or add a right-click option on your desktop to change wallpapers instantly.
 
 ## 📁 Architecture
 
@@ -53,7 +53,7 @@ The project consists of 2 main executables (`.exe`):
 
 ---
 
-# HaYTooL Wallpaper (v1.0.7) 🇹🇷
+# HaYTooL Wallpaper (v1.0.8) 🇹🇷
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -67,7 +67,7 @@ The project consists of 2 main executables (`.exe`):
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Yerel%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.0.7-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.0.8-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
 </p>
@@ -86,7 +86,7 @@ HaYTooL Wallpaper, Windows masaüstü arka planınızı belirlediğiniz kaynakla
   - **Dogs:** Sevimli köpek fotoğrafları.
 - **Akıllı Çevrimdışı (Offline) Destek:** İndirilen duvar kağıtları `C:\0-wallpaper` önbelleğine (cache) kaydedilir. İnternetiniz koptuğunda veya sunucu hatası yaşandığında uygulama asla çökmez; otomatik olarak önbellekteki eski resimlerden birini rastgele seçerek masaüstünüzü değiştirir.
 - **Kota Yönetimi:** Önbellek klasörü 100MB'ı geçtiğinde, sadece en eski dosyalar silinerek akıllıca bir alan yönetimi yapılır.
-- **Sistem Başlangıcı:** Bilgisayar açıldığında otomatik olarak arka planı değiştirmesi için kayıt defterine kolayca eklenebilir.
+- **Sistem Başlangıcı ve Sağ Tık Menüsü:** Bilgisayar açıldığında otomatik çalışması için başlangıca ekleyebilir veya masaüstünüze sağ tıkladığınızda duvar kağıdını anında değiştirecek bir kısayol oluşturabilirsiniz.
 
 ## 📁 Mimari
 

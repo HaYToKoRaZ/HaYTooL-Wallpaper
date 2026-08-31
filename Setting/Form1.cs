@@ -15,6 +15,7 @@ namespace Setting
         private ComboBox cbSource;
         private ComboBox cbCategory;
         private CheckBox chkStartup;
+        private CheckBox chkContextMenu;
         private Button btnSave;
         private Label lblSource;
         private Label lblCategory;
@@ -53,7 +54,7 @@ namespace Setting
                 using JsonDocument doc = JsonDocument.Parse(json);
                 string latestVersion = doc.RootElement.GetProperty("tag_name").GetString();
 
-                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.0.7")
+                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.0.8")
                 {
                     Invoke(new Action(() => {
                         lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersion} (Click to download)" : $"Yeni sürüm mevcut: {latestVersion} (İndirmek için tıklayın)";
@@ -84,7 +85,7 @@ namespace Setting
 
         private void InitializeComponentUI()
         {
-            this.Size = new Size(350, 330);
+            this.Size = new Size(350, 360);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -106,12 +107,13 @@ namespace Setting
             lblCategory = new Label { Location = new Point(20, 125), AutoSize = true };
             cbCategory = new ComboBox { Location = new Point(20, 145), Width = 290, DropDownStyle = ComboBoxStyle.DropDownList };
             
-            chkStartup = new CheckBox { Location = new Point(20, 185), AutoSize = true };
+            chkStartup = new CheckBox { Location = new Point(20, 175), AutoSize = true };
+            chkContextMenu = new CheckBox { Location = new Point(20, 200), AutoSize = true };
 
-            btnSave = new Button { Location = new Point(20, 215), Width = 290, Height = 35 };
+            btnSave = new Button { Location = new Point(20, 235), Width = 290, Height = 35 };
             btnSave.Click += BtnSave_Click;
 
-            lblUpdate = new LinkLabel { Location = new Point(20, 260), AutoSize = true, Visible = false };
+            lblUpdate = new LinkLabel { Location = new Point(20, 280), AutoSize = true, Visible = false };
             lblUpdate.LinkClicked += (s, e) => { Process.Start(new ProcessStartInfo("https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases") { UseShellExecute = true }); };
 
             this.Controls.Add(lblLanguage);
@@ -121,6 +123,7 @@ namespace Setting
             this.Controls.Add(lblCategory);
             this.Controls.Add(cbCategory);
             this.Controls.Add(chkStartup);
+            this.Controls.Add(chkContextMenu);
             this.Controls.Add(btnSave);
             this.Controls.Add(lblUpdate);
         }
@@ -129,20 +132,22 @@ namespace Setting
         {
             if (lang == "EN")
             {
-                this.Text = "HaYTooL Wallpaper Settings v1.0.7";
+                this.Text = "HaYTooL Wallpaper Settings v1.0.8";
                 lblLanguage.Text = "Language:";
                 lblSource.Text = "Wallpaper Source:";
                 lblCategory.Text = "Category (for Wallhaven):";
                 chkStartup.Text = "Run on Windows startup";
+                chkContextMenu.Text = "Add to Desktop right-click menu";
                 btnSave.Text = "Save & Apply";
             }
             else
             {
-                this.Text = "HaYTooL Wallpaper Ayarları v1.0.7";
+                this.Text = "HaYTooL Wallpaper Ayarları v1.0.8";
                 lblLanguage.Text = "Dil Seçimi:";
                 lblSource.Text = "Duvar Kağıdı Kaynağı:";
                 lblCategory.Text = "Kategori (Wallhaven için):";
                 chkStartup.Text = "Sistem açılışında çalıştır";
+                chkContextMenu.Text = "Masaüstü sağ tık menüsüne ekle";
                 btnSave.Text = "Kaydet ve Uygula";
             }
             
@@ -199,6 +204,11 @@ namespace Setting
                     chkStartup.Checked = (key.GetValue(appName) != null);
                 }
             }
+
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Classes\Directory\Background\shell\HaYTooLWallpaper", false))
+            {
+                chkContextMenu.Checked = (key != null);
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -227,6 +237,29 @@ namespace Setting
                 }
                 
                 string targetExePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HaYTooL-Wallpaper.exe");
+
+                // Context Menu Registry
+                string shellKeyPath = @"SOFTWARE\Classes\Directory\Background\shell\HaYTooLWallpaper";
+                if (chkContextMenu.Checked)
+                {
+                    using (RegistryKey key = Registry.CurrentUser.CreateSubKey(shellKeyPath))
+                    {
+                        if (key != null)
+                        {
+                            key.SetValue("", lang == "EN" ? "Change Wallpaper" : "Wallpaper değiştir");
+                            key.SetValue("Icon", $"\"{targetExePath}\"");
+                            using (RegistryKey cmdKey = key.CreateSubKey("command"))
+                            {
+                                cmdKey?.SetValue("", $"\"{targetExePath}\"");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Registry.CurrentUser.DeleteSubKeyTree(shellKeyPath, false);
+                }
+
                 if (File.Exists(targetExePath))
                 {
                     Process.Start(targetExePath);
