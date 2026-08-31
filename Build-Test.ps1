@@ -5,6 +5,12 @@ Write-Host ""
 
 $OutDir = "App_Yayin"
 
+# Eğer programlar açıksa kapat (Yoksa dosya kilidi hatası verir)
+Write-Host "[*] Çalışan uygulamalar kapatılıyor (Dosya kilidi hatasını önlemek için)..." -ForegroundColor Yellow
+Stop-Process -Name "Setting" -Force -ErrorAction SilentlyContinue
+Stop-Process -Name "HaYTooL-Wallpaper" -Force -ErrorAction SilentlyContinue
+Start-Sleep -Seconds 1
+
 # Eski derlemeleri temizle
 if (Test-Path $OutDir) {
     Write-Host "[*] Eski derleme kalıntıları temizleniyor..." -ForegroundColor Yellow
@@ -25,5 +31,5 @@ Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host "`nDosyalarınız '$OutDir' klasöründe test edilmeye hazır." -ForegroundColor Yellow
 Write-Host "Test etmek için App_Yayin\Setting.exe'yi çalıştırın." -ForegroundColor White
 
-Write-Host "`nÇıkmak için bir tuşa basın..." -ForegroundColor Gray
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Write-Host "`nÇıkmak için ENTER'a basın..." -ForegroundColor Gray
+Read-Host
