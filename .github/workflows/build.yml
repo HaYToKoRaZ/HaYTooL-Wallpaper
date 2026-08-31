@@ -33,7 +33,7 @@ jobs:
           } else {
             echo "New version $version detected! Will build and create a new release."
             echo "SKIP_RELEASE=false" >> $env:GITHUB_ENV
-            echo "VERSION=$version" >> $env:GITHUB_ENV
+            echo "RELEASE_VERSION=$version" >> $env:GITHUB_ENV
           }
         } else {
           echo "Could not find version in Form1.cs!"
@@ -65,7 +65,7 @@ jobs:
       if: env.SKIP_RELEASE == 'false'
       shell: pwsh
       run: |
-        $zipName = "HaYTooL-Wallpaper-${{ env.VERSION }}.zip"
+        $zipName = "HaYTooL-Wallpaper-${{ env.RELEASE_VERSION }}.zip"
         Compress-Archive -Path release_files\* -DestinationPath $zipName
         echo "ZIP_NAME=$zipName" >> $env:GITHUB_ENV
 
@@ -73,9 +73,9 @@ jobs:
       if: env.SKIP_RELEASE == 'false'
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ env.VERSION }}
-        name: HaYTooL Wallpaper ${{ env.VERSION }}
-        body: "HaYTooL Wallpaper ${{ env.VERSION }} otomatik sürümü."
+        tag_name: ${{ env.RELEASE_VERSION }}
+        name: HaYTooL Wallpaper ${{ env.RELEASE_VERSION }}
+        body: "HaYTooL Wallpaper ${{ env.RELEASE_VERSION }} otomatik sürümü."
         files: ${{ env.ZIP_NAME }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
