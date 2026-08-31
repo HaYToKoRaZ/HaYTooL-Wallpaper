@@ -57,6 +57,16 @@ namespace Setting
                 {
                     Invoke(new Action(() => {
                         lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersion} (Click to download)" : $"Yeni sürüm mevcut: {latestVersion} (İndirmek için tıklayın)";
+                        lblUpdate.LinkArea = new LinkArea(0, lblUpdate.Text.Length);
+                        lblUpdate.Visible = true;
+                    }));
+                }
+                else
+                {
+                    Invoke(new Action(() => {
+                        lblUpdate.Text = lang == "EN" ? "Your application is up to date." : "Uygulamanız güncel.";
+                        lblUpdate.LinkArea = new LinkArea(0, 0);
+                        lblUpdate.ForeColor = Color.Green;
                         lblUpdate.Visible = true;
                     }));
                 }
