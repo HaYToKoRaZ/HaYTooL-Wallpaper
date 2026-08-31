@@ -4,6 +4,19 @@
   <img src="logo.png" width="128">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Platform-Windows-blue?style=for-the-badge&logo=windows" alt="Platform" />
+  <img src="https://img.shields.io/badge/Language-C%23%20%7C%20.NET%208.0-512BD4?style=for-the-badge&logo=c-sharp" alt="Language" />
+  <img src="https://img.shields.io/badge/Database-INI%20(Settings)-red?style=for-the-badge" alt="Database" />
+  <br>
+  <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
+  <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
+  <img src="https://img.shields.io/badge/Version-v1.0.5-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub Downloads (latest release)" />
+</p>
+
 *[For Turkish documentation, please scroll down. / Türkçe açıklama için aşağı kaydırın.]*
 
 HaYTooL Wallpaper is a lightweight and modern C# / .NET application that dynamically changes your Windows desktop background using high-resolution images from selected sources. **It runs completely silently in the background without showing any command prompt windows.**
@@ -44,6 +57,19 @@ The project consists of 2 main executables (`.exe`):
 
 <p align="center">
   <img src="logo.png" width="128">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Aktif-success?style=for-the-badge" alt="Status" />
+  <img src="https://img.shields.io/badge/Platform-Windows-blue?style=for-the-badge&logo=windows" alt="Platform" />
+  <img src="https://img.shields.io/badge/Language-C%23%20%7C%20.NET%208.0-512BD4?style=for-the-badge&logo=c-sharp" alt="Language" />
+  <img src="https://img.shields.io/badge/Database-INI%20(Ayarlar)-red?style=for-the-badge" alt="Database" />
+  <br>
+  <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
+  <img src="https://img.shields.io/badge/Downloader-Yerel%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
+  <img src="https://img.shields.io/badge/Version-v1.0.5-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
+  <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
 </p>
 
 HaYTooL Wallpaper, Windows masaüstü arka planınızı belirlediğiniz kaynaklardan yüksek çözünürlüklü görsellerle dinamik olarak değiştiren, **hiçbir komut penceresi göstermeden tamamen sessiz çalışan** hafif ve modern bir C# / .NET uygulamasıdır.

@@ -15,12 +15,12 @@ if ([string]::IsNullOrWhiteSpace($status)) {
 }
 
 Write-Host "[*] Degisiklikler ekleniyor (git add .)..." -ForegroundColor Yellow
-git add .
+git add . 2>&1 | Write-Host
 
 Write-Host "[*] Commit olusturuluyor: '$Message'..." -ForegroundColor Yellow
-git commit -m "$Message"
+git commit -m "$Message" 2>&1 | Write-Host
 
 Write-Host "[*] Degisiklikler GitHub'a gonderiliyor (git push origin master)..." -ForegroundColor Yellow
-git push origin master
+git push origin master 2>&1 | Write-Host
 
 Write-Host "[+] Islem basariyla tamamlandi!" -ForegroundColor Green
