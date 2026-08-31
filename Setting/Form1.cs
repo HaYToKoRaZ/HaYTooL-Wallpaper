@@ -71,7 +71,15 @@ namespace Setting
                     }));
                 }
             }
-            catch { }
+            catch
+            {
+                Invoke(new Action(() => {
+                    lblUpdate.Text = lang == "EN" ? "Version info could not be fetched." : "Sürüm bilgisi alınamadı.";
+                    lblUpdate.LinkArea = new LinkArea(0, 0);
+                    lblUpdate.ForeColor = Color.Gray;
+                    lblUpdate.Visible = true;
+                }));
+            }
         }
 
         private void InitializeComponentUI()

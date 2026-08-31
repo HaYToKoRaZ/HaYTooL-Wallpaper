@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Win32;
 using Shared;
 
 namespace HaYTooL_Wallpaper
@@ -53,8 +54,25 @@ namespace HaYTooL_Wallpaper
 
             if (!string.IsNullOrEmpty(pathToSet) && File.Exists(pathToSet))
             {
+                SetWallpaperStyle(source == "Cats" || source == "Dogs" ? "6" : "10"); // 6: Fit, 10: Fill
                 SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, pathToSet, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
             }
+        }
+
+        static void SetWallpaperStyle(string style)
+        {
+            try
+            {
+                using (var key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue(@"WallpaperStyle", style);
+                        key.SetValue(@"TileWallpaper", "0");
+                    }
+                }
+            }
+            catch { }
         }
 
         static void EnsureCacheFolder()
