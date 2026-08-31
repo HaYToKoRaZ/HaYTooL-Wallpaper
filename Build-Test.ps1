@@ -1,4 +1,3 @@
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 Set-Location $PSScriptRoot
 
 Write-Host "=============================================" -ForegroundColor Cyan
@@ -8,31 +7,31 @@ Write-Host ""
 
 $OutDir = "App_Yayin"
 
-# Eğer programlar açıksa kapat (Yoksa dosya kilidi hatası verir)
-Write-Host "[*] Çalışan uygulamalar kapatılıyor (Dosya kilidi hatasını önlemek için)..." -ForegroundColor Yellow
+# Eger programlar aciksa kapat (Yoksa dosya kilidi hatasi verir)
+Write-Host "[*] Calisan uygulamalar kapatiliyor (Dosya kilidi hatasini onlemek icin)..." -ForegroundColor Yellow
 Stop-Process -Name "Setting" -Force -ErrorAction SilentlyContinue
 Stop-Process -Name "HaYTooL-Wallpaper" -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 1
 
 # Eski derlemeleri temizle
 if (Test-Path $OutDir) {
-    Write-Host "[*] Eski derleme kalıntıları temizleniyor..." -ForegroundColor Yellow
+    Write-Host "[*] Eski derleme kalintilari temizleniyor..." -ForegroundColor Yellow
     Remove-Item -Path "$OutDir\*" -Recurse -Force -ErrorAction SilentlyContinue
 } else {
     New-Item -ItemType Directory -Path $OutDir | Out-Null
 }
 
-Write-Host "`n[*] 1. Arayüz (Setting.exe) derleniyor (Tek Dosya)..." -ForegroundColor Green
+Write-Host "`n[*] 1. Arayuz (Setting.exe) derleniyor (Tek Dosya)..." -ForegroundColor Green
 dotnet publish Setting/Setting.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o $OutDir
 
 Write-Host "`n[*] 2. Arka Plan (HaYTooL-Wallpaper.exe) derleniyor (Tek Dosya)..." -ForegroundColor Green
 dotnet publish HaYTooL-Wallpaper/HaYTooL-Wallpaper.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o $OutDir
 
 Write-Host "`n=============================================" -ForegroundColor Cyan
-Write-Host "   DERLEME BAŞARIYLA TAMAMLANDI! (Tebrikler) " -ForegroundColor Green
+Write-Host "   DERLEME BASARIYLA TAMAMLANDI! (Tebrikler) " -ForegroundColor Green
 Write-Host "=============================================" -ForegroundColor Cyan
-Write-Host "`nDosyalarınız '$OutDir' klasöründe test edilmeye hazır." -ForegroundColor Yellow
-Write-Host "Test etmek için App_Yayin\Setting.exe'yi çalıştırın." -ForegroundColor White
+Write-Host "`nDosyalariniz '$OutDir' klasorunde test edilmeye hazir." -ForegroundColor Yellow
+Write-Host "Test etmek icin App_Yayin\Setting.exe'yi calistirin." -ForegroundColor White
 
-Write-Host "`nÇıkmak için ENTER'a basın..." -ForegroundColor Gray
+Write-Host "`nCikmak icin ENTER'a basin..." -ForegroundColor Gray
 Read-Host
