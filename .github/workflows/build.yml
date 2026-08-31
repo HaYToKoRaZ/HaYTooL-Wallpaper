@@ -1,47 +1,81 @@
-name: Build and Upload Assets
+name: Build and Auto-Release
 
 on:
-  release:
-    types: [published] # GitHub'da yeni bir Release yayınlandığında otomatik tetiklenir
+  push:
+    branches:
+      - master
+      - main
 
 jobs:
-  build-and-upload:
+  build-and-release:
     runs-on: windows-latest
     permissions:
-      contents: write # Release'e dosya yüklemek için yetki
+      contents: write 
     
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
+    - name: Check Version and Determine if Release is Needed
+      id: check_version
+      shell: pwsh
+      run: |
+        $match = (Select-String -Path Setting/Form1.cs -Pattern "v\d+\.\d+\.\d+").Matches
+        if ($match) {
+          $version = $match[0].Value
+          echo "Detected version in code: $version"
+          
+          # Mevcut sürüm GitHub'da var mı diye kontrol et
+          $tagExists = git ls-remote --tags origin "refs/tags/$version"
+          if ($tagExists) {
+            echo "Version $version already has a release on GitHub. Skipping build."
+            echo "SKIP_RELEASE=true" >> $env:GITHUB_ENV
+          } else {
+            echo "New version $version detected! Will build and create a new release."
+            echo "SKIP_RELEASE=false" >> $env:GITHUB_ENV
+            echo "VERSION=$version" >> $env:GITHUB_ENV
+          }
+        } else {
+          echo "Could not find version in Form1.cs!"
+          exit 1
+        }
+
     - name: Setup .NET
+      if: env.SKIP_RELEASE == 'false'
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x' 
 
     - name: Build Setting.exe
+      if: env.SKIP_RELEASE == 'false'
       run: dotnet publish Setting/Setting.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o out/Setting
 
     - name: Build HaYTooL-Wallpaper.exe
+      if: env.SKIP_RELEASE == 'false'
       run: dotnet publish HaYTooL-Wallpaper/HaYTooL-Wallpaper.csproj -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o out/Wallpaper
 
     - name: Prepare Files
+      if: env.SKIP_RELEASE == 'false'
       run: |
         mkdir release_files
         copy out\Setting\Setting.exe release_files\
         copy out\Wallpaper\HaYTooL-Wallpaper.exe release_files\
 
     - name: Create Zip Archive
+      if: env.SKIP_RELEASE == 'false'
       shell: pwsh
       run: |
-        $tagName = "${{ github.event.release.tag_name }}"
-        $zipName = "HaYTooL-Wallpaper-$tagName.zip"
+        $zipName = "HaYTooL-Wallpaper-${{ env.VERSION }}.zip"
         Compress-Archive -Path release_files\* -DestinationPath $zipName
         echo "ZIP_NAME=$zipName" >> $env:GITHUB_ENV
 
-    - name: Upload Zip to Release
+    - name: Create GitHub Release and Upload Zip
+      if: env.SKIP_RELEASE == 'false'
       uses: softprops/action-gh-release@v2
       with:
+        tag_name: ${{ env.VERSION }}
+        name: HaYTooL Wallpaper ${{ env.VERSION }}
+        body: "HaYTooL Wallpaper ${{ env.VERSION }} otomatik sürümü."
         files: ${{ env.ZIP_NAME }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
