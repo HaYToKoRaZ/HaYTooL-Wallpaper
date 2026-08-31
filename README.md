@@ -1,10 +1,48 @@
-# HaYTooL Wallpaper Çevrimdışı Destekli Duvar Kağıdı Yöneticisi
+# HaYTooL Wallpaper (v1.0.0) 🌍
+
+*[For Turkish documentation, please scroll down. / Türkçe açıklama için aşağı kaydırın.]*
+
+HaYTooL Wallpaper is a lightweight and modern C# / .NET application that dynamically changes your Windows desktop background using high-resolution images from selected sources. **It runs completely silently in the background without showing any command prompt windows.**
+
+## 🌟 Features (English)
+
+- **Dual Language Support:** Turkish and English UI via the Settings app.
+- **Rich Source Options:** Choose from 6 different sources:
+  - **Wallhaven:** Professional wallpapers with categories (Nature, Space, Cars, Cyberpunk, etc.).
+  - **Bing Image of the Day:** Microsoft Bing's daily beautiful landscape photos.
+  - **Picsum:** Completely random art images.
+  - **Anime:** High-quality anime drawings powered by Nekos.Life.
+  - **Cats:** Cute cat photos.
+  - **Dogs:** Cute dog photos.
+- **Smart Offline Support (Fallback):** Downloaded wallpapers are cached in `C:\0-wallpaper`. If your internet drops or a server error occurs, the application never crashes; it automatically picks a random old image from the cache and sets it as the wallpaper.
+- **Quota Management:** When the cache folder exceeds 100MB, it smartly manages space by deleting only the oldest files.
+- **System Startup:** Easily add to the registry to change the background automatically when the computer boots.
+
+## 📁 Architecture
+
+The project consists of 2 main executables (`.exe`):
+
+1. **`Setting.exe` (UI):** A Visual Interface where you can configure settings, choose categories, and set the application to run at system startup. Saves your preferences to a `settings.ini` file.
+2. **`HaYTooL-Wallpaper.exe` (Core):** The core engine that runs **completely invisibly** (silent) in the background, reads the `settings.ini` file, and instantly changes the wallpaper.
+
+## 🚀 How to Use?
+
+1. Download or compile the project (you can use the outputs in the `Release` folder).
+2. Run the `Setting.exe` file.
+3. Choose your Language, Source, and Category (if supported).
+4. Check the "Run on Windows startup" box if you want it to run on boot.
+5. As soon as you click the **Save & Apply** button, your wallpaper will change automatically based on the new settings.
+6. Whenever you want to manually trigger a change, just double-click `HaYTooL-Wallpaper.exe`!
+
+---
+
+# HaYTooL Wallpaper (v1.0.0) 🇹🇷
 
 HaYTooL Wallpaper, Windows masaüstü arka planınızı belirlediğiniz kaynaklardan yüksek çözünürlüklü görsellerle dinamik olarak değiştiren, **hiçbir komut penceresi göstermeden tamamen sessiz çalışan** hafif ve modern bir C# / .NET uygulamasıdır.
 
-## 🌟 Özellikler
+## 🌟 Özellikler (Türkçe)
 
-- **Çift Dil Desteği:** Türkçe ve İngilizce arayüz (Settings üzerinden).
+- **Çift Dil Desteği:** Türkçe ve İngilizce arayüz (Ayarlar üzerinden).
 - **Zengin Kaynak Seçenekleri:** 6 farklı kaynaktan dilediğinizi seçin:
   - **Wallhaven:** Kategorili (Doğa, Uzay, Arabalar, Siberpunk vb.) profesyonel duvar kağıtları.
   - **Bing Günün Manzarası:** Microsoft Bing'in günlük harika fotoğrafları.

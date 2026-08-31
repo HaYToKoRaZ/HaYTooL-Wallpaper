@@ -81,7 +81,7 @@ namespace Setting
         {
             if (lang == "EN")
             {
-                this.Text = "HaYTooL Wallpaper Settings";
+                this.Text = "HaYTooL Wallpaper Settings v1.0.0";
                 lblLanguage.Text = "Language:";
                 lblSource.Text = "Wallpaper Source:";
                 lblCategory.Text = "Category (for Wallhaven):";
@@ -90,7 +90,7 @@ namespace Setting
             }
             else
             {
-                this.Text = "HaYTooL Wallpaper Ayarları";
+                this.Text = "HaYTooL Wallpaper Ayarları v1.0.0";
                 lblLanguage.Text = "Dil Seçimi:";
                 lblSource.Text = "Duvar Kağıdı Kaynağı:";
                 lblCategory.Text = "Kategori (Wallhaven için):";
