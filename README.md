@@ -1,4 +1,4 @@
-# HaYTooL Wallpaper (v1.0.8) 🌍
+# HaYTooL Wallpaper (v1.0.9) 🌍
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -12,7 +12,7 @@
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.0.8-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.0.9-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub Downloads (latest release)" />
 </p>
@@ -42,6 +42,12 @@ The project consists of 2 main executables (`.exe`):
 1. **`Setting.exe` (UI):** A Visual Interface where you can configure settings, choose categories, and set the application to run at system startup. Saves your preferences to a `settings.ini` file.
 2. **`HaYTooL-Wallpaper.exe` (Core):** The core engine that runs **completely invisibly** (silent) in the background, reads the `settings.ini` file, and instantly changes the wallpaper.
 
+## 🖼️ Screenshot
+
+<p align="center">
+  <img src="ekrangoruntusu/eng.png" alt="English Screenshot">
+</p>
+
 ## 🚀 How to Use?
 
 1. Download or compile the project (you can use the outputs in the `Release` folder).
@@ -53,7 +59,7 @@ The project consists of 2 main executables (`.exe`):
 
 ---
 
-# HaYTooL Wallpaper (v1.0.8) 🇹🇷
+# HaYTooL Wallpaper (v1.0.9) 🇹🇷
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -67,7 +73,7 @@ The project consists of 2 main executables (`.exe`):
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Yerel%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.0.8-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.0.9-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
 </p>
@@ -92,8 +98,14 @@ HaYTooL Wallpaper, Windows masaüstü arka planınızı belirlediğiniz kaynakla
 
 Proje 2 ana çalıştırılabilir dosyadan (`.exe`) oluşur:
 
-1. **`Setting.exe` (Arayüz):** Ayarları yapabileceğiniz, kategorileri seçebileceğiniz ve uygulamanın sistem başlangıcında çalışmasını ayarlayabileceğiniz Görsel Arayüz programı. Yaptığınız seçimleri `settings.ini` dosyasına kaydeder.
-2. **`HaYTooL-Wallpaper.exe` (Çekirdek):** Arka planda **tamamen görünmez** (silent) çalışan ve `settings.ini` dosyasını okuyarak duvar kağıdını anında değiştiren çekirdek yapı.
+1. **`Setting.exe` (Arayüz):** Ayarları yapabileceğiniz, kategori seçebileceğiniz ve sistem başlangıcında çalışmasını ayarlayabileceğiniz Görsel Arayüzdür. Tercihlerinizi `settings.ini` dosyasına kaydeder.
+2. **`HaYTooL-Wallpaper.exe` (Çekirdek):** Arka planda **tamamen görünmez** (sessiz) çalışan, `settings.ini` dosyasını okuyup duvar kağıdını anında değiştiren ana motordur.
+
+## 🖼️ Ekran Görüntüsü
+
+<p align="center">
+  <img src="ekrangoruntusu/tr.png" alt="Türkçe Ekran Görüntüsü">
+</p>
 
 ## 🚀 Nasıl Kullanılır?
 

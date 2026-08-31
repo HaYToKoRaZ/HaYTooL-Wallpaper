@@ -54,7 +54,7 @@ namespace Setting
                 using JsonDocument doc = JsonDocument.Parse(json);
                 string latestVersion = doc.RootElement.GetProperty("tag_name").GetString();
 
-                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.0.8")
+                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.0.9")
                 {
                     Invoke(new Action(() => {
                         lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersion} (Click to download)" : $"Yeni sürüm mevcut: {latestVersion} (İndirmek için tıklayın)";
@@ -132,7 +132,7 @@ namespace Setting
         {
             if (lang == "EN")
             {
-                this.Text = "HaYTooL Wallpaper Settings v1.0.8";
+                this.Text = "HaYTooL Wallpaper Settings v1.0.9";
                 lblLanguage.Text = "Language:";
                 lblSource.Text = "Wallpaper Source:";
                 lblCategory.Text = "Category (for Wallhaven):";
@@ -142,7 +142,7 @@ namespace Setting
             }
             else
             {
-                this.Text = "HaYTooL Wallpaper Ayarları v1.0.8";
+                this.Text = "HaYTooL Wallpaper Ayarları v1.0.9";
                 lblLanguage.Text = "Dil Seçimi:";
                 lblSource.Text = "Duvar Kağıdı Kaynağı:";
                 lblCategory.Text = "Kategori (Wallhaven için):";
