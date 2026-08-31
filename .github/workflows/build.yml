@@ -1,21 +1,14 @@
-name: Build and Release
+name: Build and Upload Assets
 
 on:
-  push:
-    tags:
-      - 'v*' # Git üzerinden 'v1.0.1' gibi bir etiket (tag) atılıp pushlanırsa otomatik çalışır
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Sürüm etiketi (Örn: v1.0.1)'
-        required: true
-        default: 'v1.0.1'
+  release:
+    types: [published] # GitHub'da yeni bir Release yayınlandığında otomatik tetiklenir
 
 jobs:
-  build-and-release:
+  build-and-upload:
     runs-on: windows-latest
     permissions:
-      contents: write # GitHub Release oluşturmak için yetki
+      contents: write # Release'e dosya yüklemek için yetki
     
     steps:
     - name: Checkout Repository
@@ -39,29 +32,16 @@ jobs:
         copy out\Wallpaper\HaYTooL-Wallpaper.exe release_files\
 
     - name: Create Zip Archive
-      run: |
-        Compress-Archive -Path release_files\* -DestinationPath HaYTooL-Wallpaper.zip
-
-    - name: Determine Tag Name
-      id: get_tag
       shell: pwsh
       run: |
-        if ("${{ github.event_name }}" -eq "workflow_dispatch") {
-          echo "TAG_NAME=${{ github.event.inputs.version }}" >> $env:GITHUB_ENV
-        } else {
-          $tag = "${{ github.ref }}".Replace("refs/tags/", "")
-          echo "TAG_NAME=$tag" >> $env:GITHUB_ENV
-        }
+        $tagName = "${{ github.event.release.tag_name }}"
+        $zipName = "HaYTooL-Wallpaper-$tagName.zip"
+        Compress-Archive -Path release_files\* -DestinationPath $zipName
+        echo "ZIP_NAME=$zipName" >> $env:GITHUB_ENV
 
-    - name: Create GitHub Release
+    - name: Upload Zip to Release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ env.TAG_NAME }}
-        name: HaYTooL Wallpaper ${{ env.TAG_NAME }}
-        body: "HaYTooL Wallpaper ${{ env.TAG_NAME }} sürümü."
-        files: |
-          HaYTooL-Wallpaper.zip
-          release_files/Setting.exe
-          release_files/HaYTooL-Wallpaper.exe
+        files: ${{ env.ZIP_NAME }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
