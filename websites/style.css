@@ -140,10 +140,13 @@ body {
   user-select: none;
 }
 
-.lang-btn .flag-icon {
-  font-size: 1.1rem;
-  line-height: 1;
-  display: inline-block;
+.lang-btn .flag-img {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  display: block;
 }
 
 .lang-btn:hover {
