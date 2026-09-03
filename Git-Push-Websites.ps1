@@ -7,42 +7,35 @@ Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host "  HaYTooL-Wallpaper Websites Push Script     " -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
 
-# 1. 'websites' dizininin varligini dogrula
 $WebsitesDir = Join-Path $PSScriptRoot "websites"
 if (-not (Test-Path $WebsitesDir)) {
     Write-Error "Hata: 'websites' klasoru bulunamadi ($WebsitesDir)!"
     exit 1
 }
 
-Write-Host "[*] Websites klasoru kontrol edildi: $WebsitesDir" -ForegroundColor Yellow
+Write-Host "[*] 'websites' bagimsiz calisma agacina (worktree) geciliyor..." -ForegroundColor Yellow
 
-# 2. Ana dizindeki olasi degisiklikleri status ile goster
-Write-Host "[*] Git durumlari inceleniyor..." -ForegroundColor Yellow
-
-# 3. websites klasorunu git'e ekle
-git add websites 2>&1 | Write-Host
-
-# 4. websites klasorunde degisiklik var mi kontrol et
-$diff = git diff --cached -- websites
-if ([string]::IsNullOrWhiteSpace($diff)) {
-    # Onceden commit edilmis olabilir, yine de subtree push denenebilir veya uyari verilebilir
-    Write-Host "[!] websites klasorunde yeni sahnelenmis (staged) degisiklik yok." -ForegroundColor Yellow
-} else {
-    Write-Host "[*] Commit olusturuluyor: '$Message'..." -ForegroundColor Yellow
-    git commit -m "$Message" websites 2>&1 | Write-Host
-}
-
-# 5. git subtree ile 'websites' dalina izole push et
-Write-Host "[*] 'websites' dalina subtree push yapiliyor (origin websites)..." -ForegroundColor Yellow
-
-# Oncelikle yerel websites dali yoksa subtree split ile olustur veya dogrudan origin'e gonder
+Push-Location $WebsitesDir
 try {
-    $pushOutput = git subtree push --prefix=websites origin websites 2>&1
-    Write-Host $pushOutput
-    Write-Host "`n[+] 'websites' dali basariyla GitHub'a gonderildi!" -ForegroundColor Green
-} catch {
-    Write-Warning "Subtree push sirasinda bir uyari veya hata olustu. Detay:"
-    Write-Host $_
+    Write-Host "[*] Git durumunu kontrol ediyorum..." -ForegroundColor Yellow
+    $status = git status --porcelain
+    if ([string]::IsNullOrWhiteSpace($status)) {
+        Write-Host "[!] 'websites' klasorunde yeni degisiklik yok. Push islemine gerek yok." -ForegroundColor Green
+    } else {
+        Write-Host "[*] Degisiklikler ekleniyor (git add .)..." -ForegroundColor Yellow
+        git add . 2>&1 | Write-Host
+
+        Write-Host "[*] Commit olusturuluyor: '$Message'..." -ForegroundColor Yellow
+        git commit -m "$Message" 2>&1 | Write-Host
+
+        Write-Host "[*] Bagimsiz 'websites' dalina push ediliyor (origin websites)..." -ForegroundColor Yellow
+        git push origin websites 2>&1 | Write-Host
+
+        Write-Host "[+] 'websites' dali basariyla GitHub'a gonderildi!" -ForegroundColor Green
+    }
+}
+finally {
+    Pop-Location
 }
 
 Write-Host "=============================================" -ForegroundColor Cyan
