@@ -17,9 +17,24 @@
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub Downloads (latest release)" />
 </p>
 
+---
+
+### 🌐 HaYTooL Ecosystem & PoRTaL
+Discover all our tools, scripts, and utilities under one roof at the official **[HaYTooL PoRTaL](https://haytokoraz.github.io/)**!  
+You can also visit the official web page of this project on GitHub Pages.
+
+---
+
 *[For Turkish documentation, please scroll down. / Türkçe açıklama için aşağı kaydırın.]*
 
 HaYTooL Wallpaper is a lightweight and modern C# / .NET application that dynamically changes your Windows desktop background using high-resolution images from selected sources. **It runs completely silently in the background without showing any command prompt windows.**
+
+## ⚡ Zero Resource Consumption (0% RAM, 0% CPU) & Startup Architecture
+
+HaYTooL Wallpaper is **NOT** a bloated background service that constantly sits in memory eating up your system resources.
+- **Runs and Quits Instantly:** If enabled, it only launches during Windows startup, fetches a fresh wallpaper from your chosen category, sets it, and **immediately terminates itself**.
+- **Zero Resource Impact:** While your computer is running, it consumes **0 MB RAM and 0% CPU**. 
+- **Fresh Wallpaper on Every Restart:** Every time you turn on or reboot your computer, you are welcomed by a brand-new desktop background without any performance penalty!
 
 ## 🌟 Features (English)
 
@@ -78,7 +93,22 @@ The project consists of 2 main executables (`.exe`):
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
 </p>
 
+---
+
+### 🌐 HaYTooL Ekosistemi & PoRTaL
+Geliştirdiğimiz tüm araçlara, betiklere ve uygulamalara tek bir merkezden erişmek için resmi **[HaYTooL PoRTaL](https://haytokoraz.github.io/)** sayfamızı ziyaret edin!  
+Ayrıca bu projenin GitHub Pages tanıtım sitesine de oradan veya proje bağlantılarından ulaşabilirsiniz.
+
+---
+
 HaYTooL Wallpaper, Windows masaüstü arka planınızı belirlediğiniz kaynaklardan yüksek çözünürlüklü görsellerle dinamik olarak değiştiren, **hiçbir komut penceresi göstermeden tamamen sessiz çalışan** hafif ve modern bir C# / .NET uygulamasıdır.
+
+## ⚡ Sıfır Kaynak Tüketimi (%0 RAM, %0 CPU) ve Açılış Mimarisi
+
+HaYTooL Wallpaper, arka planda sürekli çalışıp RAM'inizi ve işlemcinizi meşgul eden hantal programlardan **DEĞİLDİR!**
+- **Çalışır ve Hemen Kapanır:** Eğer seçeneği aktif ederseniz, yalnızca Windows açılışında sessizce tetiklenir, belirlediğiniz kategoriden yeni bir duvar kağıdını ayarlar ve **görevini tamamlayıp kendini saniyeler içinde tamamen kapatır.**
+- **Sıfır Sistem Yükü:** Bilgisayarınız açık kaldığı sürece arka planda hiçbir servis veya işlem kalmaz; **0 MB RAM ve %0 CPU** tüketir.
+- **Her Yeniden Başlatmada Yeni Bir Manzara:** Bilgisayarınızı her açtığınızda veya yeniden başlattığınızda (restart), sıfır sistem kaynağı tüketerek belirlediğiniz kategoriden harika, yepyeni bir duvar kağıdıyla karşılanırsınız!
 
 ## 🌟 Özellikler (Türkçe)
 
