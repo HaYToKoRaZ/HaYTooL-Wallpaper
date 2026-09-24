@@ -20,7 +20,10 @@ jobs:
       id: check_version
       shell: pwsh
       run: |
-        $match = (Select-String -Path Setting/Form1.cs -Pattern "v\d+\.\d+\.\d+").Matches
+        $match = (Select-String -Path Setting/Services/UpdateService.cs -Pattern 'v\d+\.\d+(\.\d+)?').Matches
+        if (-not $match) {
+          $match = (Select-String -Path Setting/Form1.cs -Pattern 'v\d+\.\d+(\.\d+)?').Matches
+        }
         if ($match) {
           $version = $match[0].Value
           echo "Detected version in code: $version"

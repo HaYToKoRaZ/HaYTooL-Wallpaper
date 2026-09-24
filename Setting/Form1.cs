@@ -1,12 +1,11 @@
 using System;
 using System.Drawing;
-using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
-using Microsoft.Win32;
-using System.Net.Http;
-using System.Text.Json;
-using Shared;
+using System.IO;
+using Shared.Data;
+using Shared.Services;
+using Setting.Services;
 
 namespace Setting
 {
@@ -23,55 +22,29 @@ namespace Setting
         private Label lblLanguage;
         private LinkLabel lblUpdate;
 
-        private IniHelper ini;
-        private string iniPath;
-        private string appName = "HaYTooL-Wallpaper";
-
-        // Language dictionaries
-        private string lang = "TR"; // Default TR
+        private readonly SettingsRepository _settings;
+        private string lang = "TR";
 
         public Form1()
         {
-            string exePath = AppDomain.CurrentDomain.BaseDirectory;
-            iniPath = Path.Combine(exePath, "settings.ini");
-            ini = new IniHelper(iniPath);
-            lang = ini.Read("Language", "Settings", "TR");
+            _settings = new SettingsRepository();
+            lang = _settings.Language;
 
             InitializeComponentUI();
             LoadSettings();
             UpdateLanguage();
-            CheckForUpdates();
+            RunUpdateCheck();
         }
 
-        private async void CheckForUpdates()
+        private async void RunUpdateCheck()
         {
-            try
+            var result = await UpdateService.CheckForUpdatesAsync();
+            if (result.IsSuccess)
             {
-                using HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Add("User-Agent", "HaYTooL-Wallpaper-Updater");
-                string url = "https://api.github.com/repos/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest";
-                string json = await client.GetStringAsync(url);
-                using JsonDocument doc = JsonDocument.Parse(json);
-                string latestVersionStr = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
-                string currentVersionStr = "v1.1.1";
-
-                string cleanLatest = latestVersionStr.TrimStart('v', 'V');
-                string cleanCurrent = currentVersionStr.TrimStart('v', 'V');
-
-                bool hasNewerVersion = false;
-                if (Version.TryParse(cleanLatest, out Version latestVer) && Version.TryParse(cleanCurrent, out Version curVer))
-                {
-                    hasNewerVersion = latestVer > curVer;
-                }
-                else if (!string.IsNullOrEmpty(latestVersionStr) && latestVersionStr != currentVersionStr)
-                {
-                    hasNewerVersion = string.Compare(cleanLatest, cleanCurrent, StringComparison.OrdinalIgnoreCase) > 0;
-                }
-
-                if (hasNewerVersion)
+                if (result.HasNewerVersion)
                 {
                     Invoke(new Action(() => {
-                        lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersionStr} (Click to download)" : $"Yeni sürüm mevcut: {latestVersionStr} (İndirmek için tıklayın)";
+                        lblUpdate.Text = lang == "EN" ? $"New version available: {result.LatestVersion} (Click to download)" : $"Yeni sürüm mevcut: {result.LatestVersion} (İndirmek için tıklayın)";
                         lblUpdate.LinkArea = new LinkArea(0, lblUpdate.Text.Length);
                         lblUpdate.Visible = true;
                     }));
@@ -86,7 +59,7 @@ namespace Setting
                     }));
                 }
             }
-            catch
+            else
             {
                 Invoke(new Action(() => {
                     lblUpdate.Text = lang == "EN" ? "Version info could not be fetched." : "Sürüm bilgisi alınamadı.";
@@ -156,7 +129,7 @@ namespace Setting
         {
             if (lang == "EN")
             {
-                this.Text = "HaYTooL Wallpaper Settings v1.1.1";
+                this.Text = $"HaYTooL Wallpaper Settings {UpdateService.CurrentVersion}";
                 lblLanguage.Text = "Language:";
                 lblSource.Text = "Wallpaper Source:";
                 lblCategory.Text = "Category (for Wallhaven):";
@@ -166,7 +139,7 @@ namespace Setting
             }
             else
             {
-                this.Text = "HaYTooL Wallpaper Ayarları v1.1.1";
+                this.Text = $"HaYTooL Wallpaper Ayarları {UpdateService.CurrentVersion}";
                 lblLanguage.Text = "Dil Seçimi:";
                 lblSource.Text = "Duvar Kağıdı Kaynağı:";
                 lblCategory.Text = "Kategori (Wallhaven için):";
@@ -193,8 +166,7 @@ namespace Setting
                 {
                     cbCategory.Items.AddRange(new[] { "Nature", "City", "Space", "Cars", "Cyberpunk", "Abstract" });
                     
-                    // Reload category setting if it exists in valid items
-                    string category = ini.Read("Category", "Settings", "Nature");
+                    string category = _settings.Category;
                     if (cbCategory.Items.Contains(category)) 
                         cbCategory.SelectedItem = category;
                     else 
@@ -212,7 +184,7 @@ namespace Setting
 
         private void LoadSettings()
         {
-            string source = ini.Read("Source", "Settings", "Wallhaven");
+            string source = _settings.Source;
             if (source == "Bing") source = "Bing günün manzarası";
             
             if (cbSource.Items.Contains(source)) 
@@ -220,84 +192,33 @@ namespace Setting
             else 
                 cbSource.SelectedIndex = 0;
 
-            // Registry check
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
-            {
-                if (key != null)
-                {
-                    chkStartup.Checked = (key.GetValue(appName) != null);
-                }
-            }
-
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Classes\Directory\Background\shell\HaYTooLWallpaper", false))
-            {
-                chkContextMenu.Checked = (key != null);
-            }
+            chkStartup.Checked = RegistryService.IsStartupEnabled();
+            chkContextMenu.Checked = RegistryService.IsContextMenuEnabled();
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private async void BtnSave_Click(object sender, EventArgs e)
         {
-            ini.Write("Language", lang, "Settings");
-            ini.Write("Source", cbSource.SelectedItem?.ToString() ?? "Wallhaven", "Settings");
+            _settings.Language = lang;
+            _settings.Source = cbSource.SelectedItem?.ToString() ?? "Wallhaven";
             
             if (cbSource.SelectedItem?.ToString() == "Wallhaven")
             {
-                ini.Write("Category", cbCategory.SelectedItem?.ToString() ?? "Nature", "Settings");
+                _settings.Category = cbCategory.SelectedItem?.ToString() ?? "Nature";
             }
 
+            RegistryService.SetStartup(chkStartup.Checked);
+            RegistryService.SetContextMenu(chkContextMenu.Checked, lang);
+
+            string successMsg = lang == "EN" ? "Settings saved! Applying wallpaper now..." : "Ayarlar kaydedildi! Duvar kağıdı şimdi uygulanıyor...";
+            string successTitle = lang == "EN" ? "Success" : "Başarılı";
+            MessageBox.Show(successMsg, successTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Ayarlar kaydedildikten sonra yeni arka planı hemen uygula
             try
             {
-                using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
-                {
-                    if (chkStartup.Checked)
-                    {
-                        string targetExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HaYTooL-Wallpaper.exe");
-                        key.SetValue(appName, $"\"{targetExe}\"");
-                    }
-                    else
-                    {
-                        key.DeleteValue(appName, false);
-                    }
-                }
-                
-                string targetExePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "HaYTooL-Wallpaper.exe");
-
-                // Context Menu Registry
-                string shellKeyPath = @"SOFTWARE\Classes\Directory\Background\shell\HaYTooLWallpaper";
-                if (chkContextMenu.Checked)
-                {
-                    using (RegistryKey key = Registry.CurrentUser.CreateSubKey(shellKeyPath))
-                    {
-                        if (key != null)
-                        {
-                            key.SetValue("", lang == "EN" ? "Change Wallpaper" : "Wallpaper değiştir");
-                            key.SetValue("Icon", $"\"{targetExePath}\"");
-                            using (RegistryKey cmdKey = key.CreateSubKey("command"))
-                            {
-                                cmdKey?.SetValue("", $"\"{targetExePath}\"");
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    Registry.CurrentUser.DeleteSubKeyTree(shellKeyPath, false);
-                }
-
-                if (File.Exists(targetExePath))
-                {
-                    Process.Start(targetExePath);
-                }
-
-                string msg = lang == "EN" ? "Settings saved and wallpaper is updating!" : "Ayarlar kaydedildi ve duvar kağıdı güncelleniyor!";
-                string title = lang == "EN" ? "Success" : "Başarılı";
-                MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                await WallpaperManager.ExecuteAsync();
             }
-            catch (Exception ex)
-            {
-                string msg = lang == "EN" ? "Error writing to registry: " : "Kayıt defterine yazılırken hata oluştu: ";
-                MessageBox.Show(msg + ex.Message, lang == "EN" ? "Error" : "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            catch { }
         }
     }
 }

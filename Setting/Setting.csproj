@@ -12,8 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="..\IniHelper.cs" />
-    <Compile Include="..\PulseClient.cs" />
+    <Compile Include="..\Shared\**\*.cs" />
   </ItemGroup>
 
 </Project>

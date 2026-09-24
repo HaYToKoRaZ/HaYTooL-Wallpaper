@@ -11,7 +11,7 @@ static class Program
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
         ApplicationConfiguration.Initialize();
-        Shared.PulseClient.Start();
+        Shared.Core.PulseClient.Start();
         Application.Run(new Form1());
     }    
 }
