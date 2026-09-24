@@ -52,12 +52,26 @@ namespace Setting
                 string url = "https://api.github.com/repos/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest";
                 string json = await client.GetStringAsync(url);
                 using JsonDocument doc = JsonDocument.Parse(json);
-                string latestVersion = doc.RootElement.GetProperty("tag_name").GetString();
+                string latestVersionStr = doc.RootElement.GetProperty("tag_name").GetString() ?? "";
+                string currentVersionStr = "v1.1.1";
 
-                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.1.0")
+                string cleanLatest = latestVersionStr.TrimStart('v', 'V');
+                string cleanCurrent = currentVersionStr.TrimStart('v', 'V');
+
+                bool hasNewerVersion = false;
+                if (Version.TryParse(cleanLatest, out Version latestVer) && Version.TryParse(cleanCurrent, out Version curVer))
+                {
+                    hasNewerVersion = latestVer > curVer;
+                }
+                else if (!string.IsNullOrEmpty(latestVersionStr) && latestVersionStr != currentVersionStr)
+                {
+                    hasNewerVersion = string.Compare(cleanLatest, cleanCurrent, StringComparison.OrdinalIgnoreCase) > 0;
+                }
+
+                if (hasNewerVersion)
                 {
                     Invoke(new Action(() => {
-                        lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersion} (Click to download)" : $"Yeni sürüm mevcut: {latestVersion} (İndirmek için tıklayın)";
+                        lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersionStr} (Click to download)" : $"Yeni sürüm mevcut: {latestVersionStr} (İndirmek için tıklayın)";
                         lblUpdate.LinkArea = new LinkArea(0, lblUpdate.Text.Length);
                         lblUpdate.Visible = true;
                     }));
@@ -85,13 +99,13 @@ namespace Setting
 
         private void InitializeComponentUI()
         {
-            this.Size = new Size(350, 360);
+            this.Size = new Size(365, 360);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
 
             lblLanguage = new Label { Location = new Point(20, 15), AutoSize = true };
-            cbLanguage = new ComboBox { Location = new Point(20, 35), Width = 290, DropDownStyle = ComboBoxStyle.DropDownList };
+            cbLanguage = new ComboBox { Location = new Point(20, 35), Width = 310, DropDownStyle = ComboBoxStyle.DropDownList };
             cbLanguage.Items.AddRange(new[] { "Türkçe (TR)", "English (EN)" });
             cbLanguage.SelectedIndex = (lang == "EN") ? 1 : 0;
             cbLanguage.SelectedIndexChanged += (s, e) => { 
@@ -100,27 +114,27 @@ namespace Setting
             };
 
             lblSource = new Label { Location = new Point(20, 70), AutoSize = true };
-            cbSource = new ComboBox { Location = new Point(20, 90), Width = 290, DropDownStyle = ComboBoxStyle.DropDownList };
+            cbSource = new ComboBox { Location = new Point(20, 90), Width = 310, DropDownStyle = ComboBoxStyle.DropDownList };
             cbSource.Items.AddRange(new[] { "Wallhaven", "Bing günün manzarası", "Picsum", "Anime", "Cats", "Dogs" });
             cbSource.SelectedIndexChanged += CbSource_SelectedIndexChanged;
 
             lblCategory = new Label { Location = new Point(20, 125), AutoSize = true };
-            cbCategory = new ComboBox { Location = new Point(20, 145), Width = 290, DropDownStyle = ComboBoxStyle.DropDownList };
+            cbCategory = new ComboBox { Location = new Point(20, 145), Width = 310, DropDownStyle = ComboBoxStyle.DropDownList };
             
             chkStartup = new CheckBox { Location = new Point(20, 175), AutoSize = true };
             chkStartup.CheckedChanged += (s, e) => {
                 if (lang == "EN")
                 {
-                    chkStartup.Text = chkStartup.Checked ? "Run on Windows startup (Active)" : "Run on Windows startup (Disabled)";
+                    chkStartup.Text = chkStartup.Checked ? "Run on Windows startup & close" : "Run on Windows startup & close (Off)";
                 }
                 else
                 {
-                    chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır" : "Sistem açılışında çalıştır (Kapalı)";
+                    chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır ve kapat" : "Sistem açılışında çalıştır ve kapat (Kapalı)";
                 }
             };
             chkContextMenu = new CheckBox { Location = new Point(20, 200), AutoSize = true };
 
-            btnSave = new Button { Location = new Point(20, 235), Width = 290, Height = 35 };
+            btnSave = new Button { Location = new Point(20, 235), Width = 310, Height = 35 };
             btnSave.Click += BtnSave_Click;
 
             lblUpdate = new LinkLabel { Location = new Point(20, 280), AutoSize = true, Visible = false };
@@ -142,21 +156,21 @@ namespace Setting
         {
             if (lang == "EN")
             {
-                this.Text = "HaYTooL Wallpaper Settings v1.1.0";
+                this.Text = "HaYTooL Wallpaper Settings v1.1.1";
                 lblLanguage.Text = "Language:";
                 lblSource.Text = "Wallpaper Source:";
                 lblCategory.Text = "Category (for Wallhaven):";
-                chkStartup.Text = chkStartup.Checked ? "Run on Windows startup (Active)" : "Run on Windows startup (Disabled)";
+                chkStartup.Text = chkStartup.Checked ? "Run on Windows startup & close" : "Run on Windows startup & close (Off)";
                 chkContextMenu.Text = "Add to Desktop right-click menu";
                 btnSave.Text = "Save & Apply";
             }
             else
             {
-                this.Text = "HaYTooL Wallpaper Ayarları v1.1.0";
+                this.Text = "HaYTooL Wallpaper Ayarları v1.1.1";
                 lblLanguage.Text = "Dil Seçimi:";
                 lblSource.Text = "Duvar Kağıdı Kaynağı:";
                 lblCategory.Text = "Kategori (Wallhaven için):";
-                chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır" : "Sistem açılışında çalıştır (Kapalı)";
+                chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır ve kapat" : "Sistem açılışında çalıştır ve kapat (Kapalı)";
                 chkContextMenu.Text = "Masaüstü sağ tık menüsüne ekle";
                 btnSave.Text = "Kaydet ve Uygula";
             }

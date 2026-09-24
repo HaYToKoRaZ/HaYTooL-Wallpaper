@@ -3,6 +3,8 @@ param (
     [string]$Message = "chore: auto-push from Git-Push script"
 )
 
+Set-Location $PSScriptRoot
+
 Write-Host "=============================================" -ForegroundColor Cyan
 Write-Host "  HaYTooL-Wallpaper Git Push Script" -ForegroundColor Cyan
 Write-Host "=============================================" -ForegroundColor Cyan
