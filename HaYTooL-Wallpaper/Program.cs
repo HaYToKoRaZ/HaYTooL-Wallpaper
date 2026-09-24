@@ -57,6 +57,13 @@ namespace HaYTooL_Wallpaper
                 SetWallpaperStyle(source == "Cats" || source == "Dogs" ? "6" : "10"); // 6: Fit, 10: Fill
                 SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, pathToSet, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
             }
+
+            // Quick pulse ping before exit
+            try
+            {
+                await PulseClient.SendPulseAsync();
+            }
+            catch { }
         }
 
         static void SetWallpaperStyle(string style)

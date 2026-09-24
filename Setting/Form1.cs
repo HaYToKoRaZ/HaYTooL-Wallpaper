@@ -54,7 +54,7 @@ namespace Setting
                 using JsonDocument doc = JsonDocument.Parse(json);
                 string latestVersion = doc.RootElement.GetProperty("tag_name").GetString();
 
-                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.0.9")
+                if (!string.IsNullOrEmpty(latestVersion) && latestVersion != "v1.1.0")
                 {
                     Invoke(new Action(() => {
                         lblUpdate.Text = lang == "EN" ? $"New version available: {latestVersion} (Click to download)" : $"Yeni sürüm mevcut: {latestVersion} (İndirmek için tıklayın)";
@@ -108,6 +108,16 @@ namespace Setting
             cbCategory = new ComboBox { Location = new Point(20, 145), Width = 290, DropDownStyle = ComboBoxStyle.DropDownList };
             
             chkStartup = new CheckBox { Location = new Point(20, 175), AutoSize = true };
+            chkStartup.CheckedChanged += (s, e) => {
+                if (lang == "EN")
+                {
+                    chkStartup.Text = chkStartup.Checked ? "Run on Windows startup (Active)" : "Run on Windows startup (Disabled)";
+                }
+                else
+                {
+                    chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır" : "Sistem açılışında çalıştır (Kapalı)";
+                }
+            };
             chkContextMenu = new CheckBox { Location = new Point(20, 200), AutoSize = true };
 
             btnSave = new Button { Location = new Point(20, 235), Width = 290, Height = 35 };
@@ -132,21 +142,21 @@ namespace Setting
         {
             if (lang == "EN")
             {
-                this.Text = "HaYTooL Wallpaper Settings v1.0.9";
+                this.Text = "HaYTooL Wallpaper Settings v1.1.0";
                 lblLanguage.Text = "Language:";
                 lblSource.Text = "Wallpaper Source:";
                 lblCategory.Text = "Category (for Wallhaven):";
-                chkStartup.Text = "Run on Windows startup";
+                chkStartup.Text = chkStartup.Checked ? "Run on Windows startup (Active)" : "Run on Windows startup (Disabled)";
                 chkContextMenu.Text = "Add to Desktop right-click menu";
                 btnSave.Text = "Save & Apply";
             }
             else
             {
-                this.Text = "HaYTooL Wallpaper Ayarları v1.0.9";
+                this.Text = "HaYTooL Wallpaper Ayarları v1.1.0";
                 lblLanguage.Text = "Dil Seçimi:";
                 lblSource.Text = "Duvar Kağıdı Kaynağı:";
                 lblCategory.Text = "Kategori (Wallhaven için):";
-                chkStartup.Text = "Sistem açılışında çalıştır";
+                chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır" : "Sistem açılışında çalıştır (Kapalı)";
                 chkContextMenu.Text = "Masaüstü sağ tık menüsüne ekle";
                 btnSave.Text = "Kaydet ve Uygula";
             }

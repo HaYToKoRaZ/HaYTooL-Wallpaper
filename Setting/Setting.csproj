@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Compile Include="..\IniHelper.cs" />
+    <Compile Include="..\PulseClient.cs" />
   </ItemGroup>
 
 </Project>
