@@ -14,7 +14,8 @@
   <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
   <img src="https://img.shields.io/badge/Version-v1.2-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
-  <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub Downloads (latest release)" />
+  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?color=success&label=Latest%20Release%20Downloads" alt="Latest Release Downloads" /></a>
+  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/total?color=2ea44f&label=Total%20Downloads" alt="Total Downloads" /></a>
 </p>
 
 ---
