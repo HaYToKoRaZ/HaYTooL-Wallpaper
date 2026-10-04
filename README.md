@@ -66,7 +66,7 @@ The project consists of 2 main executables (`.exe`):
 ## 🖼️ Screenshot
 
 <p align="center">
-  <img src="ekrangoruntusu/eng.png" alt="English Screenshot">
+  <a href="https://haytokoraz.github.io/HaYTooL-Wallpaper/" title="HaYTooL Wallpaper English Settings Interface"><img src="ekrangoruntusu/eng.png" alt="HaYTooL Wallpaper English Settings Interface" width="376"></a>
 </p>
 
 ## 🚀 How to Use?
@@ -144,7 +144,7 @@ Proje 2 ana çalıştırılabilir dosyadan (`.exe`) oluşur:
 ## 🖼️ Ekran Görüntüsü
 
 <p align="center">
-  <img src="ekrangoruntusu/tr.png" alt="Türkçe Ekran Görüntüsü">
+  <a href="https://haytokoraz.github.io/HaYTooL-Wallpaper/" title="HaYTooL Wallpaper Türkçe Ayarlar Arayüzü"><img src="ekrangoruntusu/tr.png" alt="HaYTooL Wallpaper Türkçe Ayarlar Arayüzü" width="376"></a>
 </p>
 
 ## 🚀 Nasıl Kullanılır?
