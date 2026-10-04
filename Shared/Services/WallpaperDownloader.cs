@@ -20,8 +20,9 @@ namespace Shared.Services
         {
             string savePath = CacheService.GenerateNewFilePath();
             string imageUrl = null;
+            string s = (source ?? "").ToLowerInvariant();
 
-            if (source == "Wallhaven")
+            if (s.Contains("wallhaven"))
             {
                 string query = string.IsNullOrEmpty(category) ? "" : $"q={category}&";
                 string apiUrl = $"https://wallhaven.cc/api/v1/search?{query}sorting=random&resolutions=1920x1080,2560x1440,3840x2160";
@@ -34,7 +35,7 @@ namespace Shared.Services
                     imageUrl = data[0].GetProperty("path").GetString();
                 }
             }
-            else if (source == "Bing" || source == "Bing günün manzarası" || source == "Bing Günün Manzarası")
+            else if (s.Contains("bing"))
             {
                 string apiUrl = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
@@ -46,14 +47,14 @@ namespace Shared.Services
                     imageUrl = "https://www.bing.com" + urlBase;
                 }
             }
-            else if (source == "Anime")
+            else if (s.Contains("anime") || s.Contains("neko"))
             {
                 string apiUrl = "https://nekos.life/api/v2/img/wallpaper";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
                 using JsonDocument doc = JsonDocument.Parse(jsonResponse);
                 imageUrl = doc.RootElement.GetProperty("url").GetString();
             }
-            else if (source == "Cats" || source == "Sevimli Kediler 🐱" || source == "Sevimli Kediler")
+            else if (s.Contains("cat") || s.Contains("kedi"))
             {
                 string apiUrl = "https://api.thecatapi.com/v1/images/search?mime_types=jpg,png";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
@@ -63,14 +64,14 @@ namespace Shared.Services
                     imageUrl = doc.RootElement[0].GetProperty("url").GetString();
                 }
             }
-            else if (source == "Dogs" || source == "Sadık Köpekler 🐶" || source == "Sadık Köpekler")
+            else if (s.Contains("dog") || s.Contains("kopek") || s.Contains("köpek") || s.Contains("kpek"))
             {
                 string apiUrl = "https://dog.ceo/api/breeds/image/random";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
                 using JsonDocument doc = JsonDocument.Parse(jsonResponse);
                 imageUrl = doc.RootElement.GetProperty("message").GetString();
             }
-            else if (source == "Foxes" || source == "Kurnaz Tilkiler 🦊" || source == "Kurnaz Tilkiler")
+            else if (s.Contains("fox") || s.Contains("tilki"))
             {
                 // RandomFox API (Ekstra Canlı Doğal Hayvan Kaynağı)
                 try
@@ -82,7 +83,7 @@ namespace Shared.Services
                 }
                 catch { }
             }
-            else if (source == "NASA APOD" || source == "NASA APOD 🚀")
+            else if (s.Contains("nasa") || s.Contains("apod"))
             {
                 // NASA Astronomy Picture of the Day
                 try
@@ -107,7 +108,7 @@ namespace Shared.Services
                     imageUrl = "https://picsum.photos/3840/2160?space";
                 }
             }
-            else if (source == "Unsplash Doğa" || source == "Unsplash Nature")
+            else if (s.Contains("unsplash"))
             {
                 imageUrl = "https://picsum.photos/3840/2160?nature";
             }

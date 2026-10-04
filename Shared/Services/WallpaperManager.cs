@@ -37,7 +37,11 @@ namespace Shared.Services
 
             if (!string.IsNullOrEmpty(pathToSet) && File.Exists(pathToSet))
             {
-                string style = (source == "Cats" || source == "Dogs" || source == "Sevimli Kediler 🐱" || source == "Sadık Köpekler 🐶") ? "6" : "10"; // 6: Fit, 10: Fill
+                string s = (source ?? "").ToLowerInvariant();
+                bool isAnimal = s.Contains("cat") || s.Contains("kedi") || 
+                                s.Contains("dog") || s.Contains("kopek") || s.Contains("köpek") || s.Contains("kpek") ||
+                                s.Contains("fox") || s.Contains("tilki");
+                string style = isAnimal ? "6" : "10"; // 6: Fit (sığdır), 10: Fill (doldur)
                 NativeMethods.ApplyWallpaper(pathToSet, style);
             }
 

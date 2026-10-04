@@ -227,31 +227,37 @@ namespace Setting
             // Önceki seçimi veya eşdeğerini koru
             if (!string.IsNullOrEmpty(currentSelected))
             {
-                int matchedIndex = -1;
-                for (int i = 0; i < cbSource.Items.Count; i++)
-                {
-                    string item = cbSource.Items[i].ToString();
-                    if (item.Equals(currentSelected, StringComparison.OrdinalIgnoreCase) ||
-                        (currentSelected.Contains("Cat") && item.Contains("Kedi")) ||
-                        (currentSelected.Contains("Kedi") && item.Contains("Cat")) ||
-                        (currentSelected.Contains("Dog") && item.Contains("Köpek")) ||
-                        (currentSelected.Contains("Köpek") && item.Contains("Dog")) ||
-                        (currentSelected.Contains("Fox") && item.Contains("Tilki")) ||
-                        (currentSelected.Contains("Tilki") && item.Contains("Fox")) ||
-                        (currentSelected.Contains("Bing") && item.Contains("Bing")) ||
-                        (currentSelected.Contains("NASA") && item.Contains("NASA")) ||
-                        (currentSelected.Contains("Unsplash") && item.Contains("Unsplash")))
-                    {
-                        matchedIndex = i;
-                        break;
-                    }
-                }
+                int matchedIndex = FindSourceIndex(currentSelected);
                 cbSource.SelectedIndex = matchedIndex >= 0 ? matchedIndex : 0;
             }
             else
             {
                 cbSource.SelectedIndex = 0;
             }
+        }
+
+        private int FindSourceIndex(string sourceName)
+        {
+            if (string.IsNullOrEmpty(sourceName)) return 0;
+            string s = sourceName.ToLowerInvariant();
+
+            for (int i = 0; i < cbSource.Items.Count; i++)
+            {
+                string item = cbSource.Items[i].ToString();
+                string itemLower = item.ToLowerInvariant();
+
+                if (item.Equals(sourceName, StringComparison.OrdinalIgnoreCase)) return i;
+                if ((s.Contains("cat") || s.Contains("kedi")) && (itemLower.Contains("cat") || itemLower.Contains("kedi"))) return i;
+                if ((s.Contains("dog") || s.Contains("kopek") || s.Contains("köpek") || s.Contains("kpek")) && (itemLower.Contains("dog") || itemLower.Contains("kopek") || itemLower.Contains("köpek"))) return i;
+                if ((s.Contains("fox") || s.Contains("tilki")) && (itemLower.Contains("fox") || itemLower.Contains("tilki"))) return i;
+                if (s.Contains("bing") && itemLower.Contains("bing")) return i;
+                if ((s.Contains("nasa") || s.Contains("apod")) && (itemLower.Contains("nasa") || itemLower.Contains("apod"))) return i;
+                if (s.Contains("anime") && itemLower.Contains("anime")) return i;
+                if (s.Contains("unsplash") && itemLower.Contains("unsplash")) return i;
+                if (s.Contains("wallhaven") && itemLower.Contains("wallhaven")) return i;
+                if (s.Contains("picsum") && itemLower.Contains("picsum")) return i;
+            }
+            return 0;
         }
 
         private void UpdateLanguage()
@@ -326,32 +332,8 @@ namespace Setting
             ApplyTheme(cbTheme.SelectedItem?.ToString() ?? "Modern Minimalist");
 
             string source = _settings.Source;
-            if (source == "Bing") source = lang == "EN" ? "Bing Daily Image" : "Bing Günün Manzarası";
-            
-            int matched = -1;
-            for (int i = 0; i < cbSource.Items.Count; i++)
-            {
-                string item = cbSource.Items[i].ToString();
-                if (item.Equals(source, StringComparison.OrdinalIgnoreCase) ||
-                    (source.Contains("Cat") && item.Contains("Kedi")) ||
-                    (source.Contains("Kedi") && item.Contains("Cat")) ||
-                    (source.Contains("Dog") && item.Contains("Köpek")) ||
-                    (source.Contains("Köpek") && item.Contains("Dog")) ||
-                    (source.Contains("Fox") && item.Contains("Tilki")) ||
-                    (source.Contains("Tilki") && item.Contains("Fox")) ||
-                    (source.Contains("Bing") && item.Contains("Bing")) ||
-                    (source.Contains("NASA") && item.Contains("NASA")) ||
-                    (source.Contains("Unsplash") && item.Contains("Unsplash")))
-                {
-                    matched = i;
-                    break;
-                }
-            }
-
-            if (matched >= 0) 
-                cbSource.SelectedIndex = matched;
-            else 
-                cbSource.SelectedIndex = 0;
+            int matched = FindSourceIndex(source);
+            cbSource.SelectedIndex = matched >= 0 ? matched : 0;
 
             chkStartup.Checked = RegistryService.IsStartupEnabled();
             chkContextMenu.Checked = RegistryService.IsContextMenuEnabled();
