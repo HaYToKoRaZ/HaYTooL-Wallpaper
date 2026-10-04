@@ -4,33 +4,84 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HaYTooL Wallpaper - Akıllı & Sıfır Kaynak Duvar Kağıdı Değiştirici</title>
-  <meta name="description" content="Windows için sıfır kaynak tüketen, sessiz, kedi ve manzara temalı dinamik duvar kağıdı değiştirme uygulaması.">
+  <meta name="description" content="Windows için %0 RAM ve %0 CPU tüketen, sessiz, kedi, anime ve manzara temalı otomatik dinamik duvar kağıdı motoru.">
+  <meta name="keywords" content="HaYTooL, wallpaper changer, duvar kağıdı değiştirici, windows wallpaper, kedi duvar kağıdı, zero resource, açık kaynak">
+  <meta name="author" content="HaYToKoRaZ">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
+  <meta property="og:title" content="HaYTooL Wallpaper - Akıllı & Sıfır Kaynak Duvar Kağıdı Değiştirici">
+  <meta property="og:description" content="Windows için %0 RAM ve %0 CPU tüketen, sessiz, kedi, anime ve manzara temalı otomatik duvar kağıdı motoru.">
+  <meta property="og:image" content="https://haytokoraz.github.io/HaYTooL-Wallpaper/logo.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
+  <meta property="twitter:title" content="HaYTooL Wallpaper - Akıllı & Sıfır Kaynak Duvar Kağıdı Değiştirici">
+  <meta property="twitter:description" content="Windows için %0 RAM ve %0 CPU tüketen, sessiz, kedi, anime ve manzara temalı otomatik duvar kağıdı motoru.">
+  <meta property="twitter:image" content="https://haytokoraz.github.io/HaYTooL-Wallpaper/logo.png">
+
+  <!-- Hreflang Tags (SEO Audit standard) -->
+  <link rel="alternate" hreflang="tr" href="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
+  <link rel="alternate" hreflang="en" href="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
+  <link rel="alternate" hreflang="x-default" href="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
+
   <link rel="icon" type="image/x-icon" href="logo.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+
+  <!-- Schema.org JSON-LD (SoftwareApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "HaYTooL Wallpaper",
+    "operatingSystem": "Windows 10, Windows 11",
+    "applicationCategory": "UtilitiesApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "Windows için sıfır kaynak tüketen, sessiz, kedi, anime ve manzara temalı otomatik duvar kağıdı değiştirme uygulaması.",
+    "url": "https://haytokoraz.github.io/HaYTooL-Wallpaper/",
+    "author": {
+      "@type": "Person",
+      "name": "HaYToKoRaZ",
+      "url": "https://github.com/HaYToKoRaZ"
+    },
+    "softwareVersion": "1.3"
+  }
+  </script>
 </head>
 <body>
 
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">İçeriğe Atla / Skip to Content</a>
+
   <!-- Üst Menü / Navbar -->
-  <header class="navbar">
+  <header class="navbar" role="banner">
     <div class="container nav-container">
-      <a href="#" class="nav-logo">
-        <img src="logo.png" alt="HaYTooL Logo">
+      <a href="#" class="nav-logo" aria-label="HaYTooL Wallpaper Ana Sayfa">
+        <img src="logo.png" alt="HaYTooL Logo" width="40" height="40">
         <span>HaYTooL Wallpaper</span>
       </a>
       <div class="nav-actions">
-        <a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer" class="portal-nav-btn" data-i18n="navPortal">
+        <a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer" class="portal-nav-btn" data-i18n="navPortal" aria-label="HaYTooL PoRTaL Ana Sayfasını Aç">
           🌐 HaYTooL PoRTaL
         </a>
-        <div class="lang-switcher">
-          <button class="lang-btn active" data-lang="TR" title="Türkçe">
-            <img src="flags/tr.svg" alt="Türkçe" class="flag-img">
+        <div class="lang-switcher" role="group" aria-label="Dil Seçici / Language Switcher">
+          <button class="lang-btn active" data-lang="TR" title="Türkçe" aria-label="Türkçe Dilini Seç">
+            <img src="flags/tr.svg" alt="Türkçe Bayrağı" class="flag-img" width="20" height="14">
             <span>TR</span>
           </button>
-          <button class="lang-btn" data-lang="EN" title="English">
-            <img src="flags/gb.svg" alt="English" class="flag-img">
+          <button class="lang-btn" data-lang="EN" title="English" aria-label="Switch to English">
+            <img src="flags/gb.svg" alt="English Flag" class="flag-img" width="20" height="14">
             <span>EN</span>
           </button>
         </div>
@@ -39,21 +90,21 @@
   </header>
 
   <!-- Hero Bölümü -->
-  <main>
-    <section class="hero">
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="container">
         <div class="cat-mascot-wrapper">
-          <div class="cat-mascot" title="Miyav!">🐱</div>
+          <div class="cat-mascot" role="button" tabindex="0" title="Miyav! Tıkla!" aria-label="Sevimli kedi maskotu">🐱</div>
           <span class="cat-badge" data-i18n="heroBadge">Sessiz & Hafif</span>
         </div>
-        <h1 class="hero-title" data-i18n="heroTitle">Masaüstünüzü Her Açılışta Yenileyin</h1>
+        <h1 id="hero-title" class="hero-title" data-i18n="heroTitle">Masaüstünüzü Her Açılışta Yenileyin</h1>
         <p class="hero-subtitle" data-i18n="heroSubtitle">
           Windows arka planınızı kedi, anime, manzara veya sanat fotoğraflarıyla otomatik değiştiren, sıfır kaynak tüketen akıllı duvar kağıdı motoru.
         </p>
 
         <!-- Sıfır Kaynak Tüketimi Vurgusu -->
-        <div class="zero-resource-banner">
-          <div class="zero-res-icon">⚡</div>
+        <div class="zero-resource-banner" role="region" aria-label="Sistem Kaynağı Bilgilendirmesi">
+          <div class="zero-res-icon" aria-hidden="true">⚡</div>
           <div class="zero-res-content">
             <h3 data-i18n="zeroResTitle">⚡ Sıfır Kaynak Tüketimi (%0 RAM, %0 CPU)</h3>
             <p data-i18n="zeroResDesc">
@@ -64,12 +115,12 @@
 
         <!-- Butonlar -->
         <div class="hero-cta">
-          <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest" class="btn-primary" target="_blank" rel="noopener noreferrer">
-            <span>💾</span>
+          <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest" class="btn-primary" target="_blank" rel="noopener noreferrer" aria-label="En son sürümü GitHub üzerinden indir">
+            <span aria-hidden="true">💾</span>
             <span data-i18n="btnDownload">Hemen İndir</span>
           </a>
-          <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper" class="btn-secondary" target="_blank" rel="noopener noreferrer">
-            <span>⭐</span>
+          <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper" class="btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="HaYTooL Wallpaper GitHub deposuna git">
+            <span aria-hidden="true">⭐</span>
             <span data-i18n="btnGithub">GitHub Deposu</span>
           </a>
         </div>
@@ -77,48 +128,48 @@
     </section>
 
     <!-- Uygulama Ekran Önizlemesi -->
-    <section class="preview-section">
+    <section class="preview-section" aria-label="Uygulama Ekran Görüntüsü">
       <div class="container">
         <div class="preview-card">
-          <img id="preview-img" src="ekrangoruntusu/tr.png" alt="HaYTooL Wallpaper Arayüzü" class="preview-img">
+          <img id="preview-img" src="ekrangoruntusu/tr.png" alt="HaYTooL Wallpaper Ayarlar Penceresi Arayüzü" class="preview-img" width="800" height="500" loading="lazy">
         </div>
       </div>
     </section>
 
     <!-- Özellikler Grid -->
-    <section class="features-section">
+    <section class="features-section" aria-labelledby="features-heading">
       <div class="container">
-        <h2 class="section-title" data-i18n="featuresTitle">Benzersiz Özellikler</h2>
+        <h2 id="features-heading" class="section-title" data-i18n="featuresTitle">Benzersiz Özellikler</h2>
         <p class="section-desc" data-i18n="featuresSubtitle">Hafif, sessiz, akıllı ve tamamen size özel tasarlandı.</p>
         <div class="grid-3">
           <div class="feature-card">
-            <div class="feature-icon">🚀</div>
-            <h4 data-i18n="feat1Title">Sıfır Sistem Kaynağı</h4>
+            <div class="feature-icon" aria-hidden="true">🚀</div>
+            <h3 class="feature-card-title" data-i18n="feat1Title">Sıfır Sistem Kaynağı</h3>
             <p data-i18n="feat1Desc">Yalnızca bilgisayar açıldığında tetiklenir, duvar kağıdını ayarlar ve anında kapanır. %0 RAM, %0 CPU!</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🤫</div>
-            <h4 data-i18n="feat2Title">Tamamen Sessiz (WinExe)</h4>
+            <div class="feature-icon" aria-hidden="true">🤫</div>
+            <h3 class="feature-card-title" data-i18n="feat2Title">Tamamen Sessiz (WinExe)</h3>
             <p data-i18n="feat2Desc">Asla siyah konsol veya terminal pencereleri açılmaz. Arka planda görünmez ve kesintisiz çalışır.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h4 data-i18n="feat3Title">Akıllı Çevrimdışı Önbellek</h4>
+            <div class="feature-icon" aria-hidden="true">🛡️</div>
+            <h3 class="feature-card-title" data-i18n="feat3Title">Akıllı Çevrimdışı Önbellek</h3>
             <p data-i18n="feat3Desc">İnternetiniz kopsa bile C:\0-wallpaper önbelleğinden rastgele bir görsel seçilir; uygulama asla çökmez.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🧹</div>
-            <h4 data-i18n="feat4Title">100MB Kota Koruması</h4>
+            <div class="feature-icon" aria-hidden="true">🧹</div>
+            <h3 class="feature-card-title" data-i18n="feat4Title">100MB Kota Koruması</h3>
             <p data-i18n="feat4Desc">Önbellek boyutu 100MB'ı aştığında otomatik olarak sadece en eski dosyalar temizlenir, diskiniz dolmaz.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">🌍</div>
-            <h4 data-i18n="feat5Title">Çift Dil Arayüzü</h4>
+            <div class="feature-icon" aria-hidden="true">🌍</div>
+            <h3 class="feature-card-title" data-i18n="feat5Title">Çift Dil Arayüzü</h3>
             <p data-i18n="feat5Desc">Ayarlar penceresinden tek tıkla Türkçe ve İngilizce dilleri arasında kolayca geçiş yapabilirsiniz.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon">⚡</div>
-            <h4 data-i18n="feat6Title">Sağ Tık & Başlangıç</h4>
+            <div class="feature-icon" aria-hidden="true">⚡</div>
+            <h3 class="feature-card-title" data-i18n="feat6Title">Sağ Tık & Başlangıç</h3>
             <p data-i18n="feat6Desc">Masaüstü sağ tık menüsüne ekleyebilir veya sistem başlangıcında çalışması için kayıt defterine kaydedebilirsiniz.</p>
           </div>
         </div>
@@ -126,39 +177,39 @@
     </section>
 
     <!-- Kaynaklar Vitrini -->
-    <section class="sources-section">
+    <section class="sources-section" aria-labelledby="sources-heading">
       <div class="container">
-        <h2 class="section-title" data-i18n="sourcesTitle">Zengin Görsel Kaynakları</h2>
+        <h2 id="sources-heading" class="section-title" data-i18n="sourcesTitle">Zengin Görsel Kaynakları</h2>
         <p class="section-desc" data-i18n="sourcesSubtitle">Ruh halinize ve tarzınıza uygun görsel kaynağını tek tıkla seçin.</p>
         <div class="sources-grid">
           <div class="source-item">
-            <span class="source-emoji">🌄</span>
-            <h5 data-i18n="srcWallhaven">Wallhaven</h5>
+            <span class="source-emoji" aria-hidden="true">🌄</span>
+            <h3 class="source-item-title" data-i18n="srcWallhaven">Wallhaven</h3>
             <span data-i18n="srcWallhavenDesc">Doğa, Uzay, Arabalar, Siberpunk</span>
           </div>
           <div class="source-item">
-            <span class="source-emoji">🌍</span>
-            <h5 data-i18n="srcBing">Bing Günün Resmi</h5>
+            <span class="source-emoji" aria-hidden="true">🌍</span>
+            <h3 class="source-item-title" data-i18n="srcBing">Bing Günün Resmi</h3>
             <span data-i18n="srcBingDesc">Günlük büyüleyici doğa fotoğrafları</span>
           </div>
           <div class="source-item">
-            <span class="source-emoji">🎨</span>
-            <h5 data-i18n="srcPicsum">Picsum</h5>
+            <span class="source-emoji" aria-hidden="true">🎨</span>
+            <h3 class="source-item-title" data-i18n="srcPicsum">Picsum</h3>
             <span data-i18n="srcPicsumDesc">Rastgele sanatsal ve estetik kareler</span>
           </div>
           <div class="source-item">
-            <span class="source-emoji">✨</span>
-            <h5 data-i18n="srcAnime">Anime (Nekos)</h5>
+            <span class="source-emoji" aria-hidden="true">✨</span>
+            <h3 class="source-item-title" data-i18n="srcAnime">Anime (Nekos)</h3>
             <span data-i18n="srcAnimeDesc">Yüksek kaliteli anime illüstrasyonları</span>
           </div>
           <div class="source-item">
-            <span class="source-emoji">🐱</span>
-            <h5 data-i18n="srcCats">Sevimli Kediler 🐱</h5>
+            <span class="source-emoji" aria-hidden="true">🐱</span>
+            <h3 class="source-item-title" data-i18n="srcCats">Sevimli Kediler 🐱</h3>
             <span data-i18n="srcCatsDesc">Gününüzü neşelendirecek tatlı kediler</span>
           </div>
           <div class="source-item">
-            <span class="source-emoji">🐶</span>
-            <h5 data-i18n="srcDogs">Sadık Köpekler 🐶</h5>
+            <span class="source-emoji" aria-hidden="true">🐶</span>
+            <h3 class="source-item-title" data-i18n="srcDogs">Sadık Köpekler 🐶</h3>
             <span data-i18n="srcDogsDesc">Yüksek çözünürlüklü köpek fotoğrafları</span>
           </div>
         </div>
@@ -166,11 +217,11 @@
     </section>
 
     <!-- HaYTooL PoRTaL Tanıtım Banner'ı -->
-    <section class="container">
+    <section class="container" aria-label="HaYTooL Portal Tanıtımı">
       <div class="portal-banner">
-        <h3 data-i18n="portalTitle">HaYTooL PoRTaL'ı Keşfedin</h3>
+        <h2 class="portal-banner-title" data-i18n="portalTitle">HaYTooL PoRTaL'ı Keşfedin</h2>
         <p data-i18n="portalDesc">Geliştirdiğimiz tüm açık kaynaklı araçlar, yardımcı betikler ve projeler tek çatı altında.</p>
-        <a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="portalBtn">
+        <a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="portalBtn" aria-label="HaYTooL PoRTaL Sitesini Yeni Sekmede Aç">
           HaYTooL PoRTaL'a Git →
         </a>
       </div>
@@ -178,7 +229,7 @@
   </main>
 
   <!-- Footer -->
-  <footer>
+  <footer role="contentinfo">
     <div class="container">
       <p>© 2026 HaYTooL Wallpaper. <span data-i18n="footerText">Tüm hakları saklıdır. MIT Lisansı ile açık kaynak olarak sunulmaktadır.</span></p>
     </div>

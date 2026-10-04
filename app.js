@@ -92,9 +92,11 @@ function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem("haytool_lang", lang);
 
-  // Buton aktifliklerini ayarla
+  // Buton aktifliklerini ve aria-pressed değerlerini ayarla
   document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.lang === lang);
+    const isActive = btn.dataset.lang === lang;
+    btn.classList.toggle("active", isActive);
+    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
 
   // data-i18n oge metinlerini degistir
@@ -125,14 +127,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Kedi maskotuna tiklandiginda miyav animasyonu
+  // Kedi maskotuna tiklandiginda veya Enter/Space basildiginda miyav animasyonu
   const cat = document.querySelector(".cat-mascot");
   if (cat) {
-    cat.addEventListener("click", () => {
+    const triggerCat = () => {
       cat.style.transform = "scale(1.3) rotate(-15deg)";
       setTimeout(() => {
         cat.style.transform = "";
       }, 300);
+    };
+
+    cat.addEventListener("click", triggerCat);
+    cat.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        triggerCat();
+      }
     });
   }
 });

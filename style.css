@@ -24,6 +24,32 @@
   box-sizing: border-box;
 }
 
+/* Accessibility: Focus visible outline for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+/* Skip link for screen readers and keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 20px;
+}
+
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
@@ -415,7 +441,8 @@ body {
   color: var(--primary-light);
 }
 
-.feature-card h4 {
+.feature-card h4,
+.feature-card-title {
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -459,7 +486,8 @@ body {
   display: block;
 }
 
-.source-item h5 {
+.source-item h5,
+.source-item-title {
   font-size: 1.05rem;
   font-weight: 700;
   margin-bottom: 4px;
@@ -482,7 +510,8 @@ body {
   overflow: hidden;
 }
 
-.portal-banner h3 {
+.portal-banner h3,
+.portal-banner-title {
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 16px;
