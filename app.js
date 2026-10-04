@@ -37,10 +37,26 @@ const i18n = {
     srcCatsDesc: "Gününüzü neşelendirecek tatlı kediler",
     srcDogs: "Sadık Köpekler 🐶",
     srcDogsDesc: "Yüksek çözünürlüklü köpek fotoğrafları",
+    srcFoxes: "Kurnaz Tilkiler 🦊",
+    srcFoxesDesc: "Doğal yaşamdan sevimli ve kurnaz tilkiler",
+    srcNasa: "NASA APOD 🚀",
+    srcNasaDesc: "Günün astronomi ve derin uzay fotoğrafı",
+    srcUnsplash: "Unsplash Doğa 🌲",
+    srcUnsplashDesc: "Seçkin yüksek çözünürlüklü doğa manzaraları",
     portalTitle: "HaYTooL PoRTaL'ı Keşfedin",
     portalDesc: "Geliştirdiğimiz tüm açık kaynaklı araçlar, yardımcı betikler ve projeler tek çatı altında.",
     portalBtn: "HaYTooL PoRTaL'a Git →",
-    footerText: "Tüm hakları saklıdır. MIT Lisansı ile açık kaynak olarak sunulmaktadır."
+    footerText: "Tüm hakları saklıdır. MIT Lisansı ile açık kaynak olarak sunulmaktadır.",
+    btnLiveDemo: "Canlı Önizlemeyi Dene",
+    statRam: "Arka Plan RAM",
+    statCpu: "Boşta CPU Tüketimi",
+    statSpeed: "Açılış Değişim Hızı",
+    statSources: "Dinamik Görsel Havuzu",
+    simTitle: "🖼️ Canlı Duvar Kağıdı Simülasyonu",
+    simLoading: "Duvar Kağıdı Yükleniyor...",
+    btnNextWallpaper: "Rastgele Yeni Görsel",
+    themesTitle: "🎨 10 Harika Renk Teması (Theme Factory)",
+    themesSubtitle: "Web sitemizin ve masaüstü ayar programımızın temasını tek tıkla dilediğiniz gibi özelleştirin."
   },
   EN: {
     navPortal: "🌐 HaYTooL PoRTaL",
@@ -79,10 +95,26 @@ const i18n = {
     srcCatsDesc: "Charming feline companions to brighten your day",
     srcDogs: "Loyal Dogs 🐶",
     srcDogsDesc: "High-resolution cute dog portraits",
+    srcFoxes: "Clever Foxes 🦊",
+    srcFoxesDesc: "Adorable wild foxes captured in nature",
+    srcNasa: "NASA APOD 🚀",
+    srcNasaDesc: "Astronomy picture of the day & deep cosmos",
+    srcUnsplash: "Unsplash Nature 🌲",
+    srcUnsplashDesc: "Curated high-resolution wilderness photography",
     portalTitle: "Explore HaYTooL PoRTaL",
     portalDesc: "Discover all our open-source software, productivity scripts, and utilities in one place.",
     portalBtn: "Visit HaYTooL PoRTaL →",
-    footerText: "All rights reserved. Released under the MIT License."
+    footerText: "All rights reserved. Released under the MIT License.",
+    btnLiveDemo: "Try Live Demo",
+    statRam: "Background RAM",
+    statCpu: "Idle CPU Usage",
+    statSpeed: "Startup Swap Speed",
+    statSources: "Dynamic Photo Feeds",
+    simTitle: "🖼️ Live Wallpaper Simulator",
+    simLoading: "Fetching wallpaper...",
+    btnNextWallpaper: "Random New Wallpaper",
+    themesTitle: "🎨 10 Curated Color Themes (Theme Factory)",
+    themesSubtitle: "Personalize the visual identity of both our website and desktop Settings app in a single click."
   }
 };
 
@@ -145,4 +177,175 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Canlı Duvar Kağıdı Simülatörü Mantığı
+  const btnLiveDemo = document.getElementById("btn-live-demo");
+  const simOverlay = document.getElementById("live-desktop-sim");
+  const closeSimBtn = document.getElementById("close-sim-btn");
+  const simImg = document.getElementById("sim-wallpaper-img");
+  const simLoader = document.getElementById("sim-loader");
+  const btnRefreshSim = document.getElementById("btn-refresh-sim");
+  const tagBtns = document.querySelectorAll(".sim-tag-btn");
+
+  let currentCategory = "cats";
+
+  // Gerçek Masaüstü Uygulamamızın Kullandığı Canlı API Kaynakları
+  async function fetchLiveWallpaper(cat) {
+    const cacheBuster = Date.now();
+    try {
+      if (cat === "cats") {
+        // TheCatAPI (Masaüstü uygulamamızın kullandığı resmi kaynak)
+        const res = await fetch("https://api.thecatapi.com/v1/images/search?mime_types=jpg,png");
+        const data = await res.json();
+        if (data && data.length > 0 && data[0].url) {
+          return data[0].url;
+        }
+      } else if (cat === "dogs") {
+        // Dog CEO API (Masaüstü uygulamamızın kullandığı resmi kaynak)
+        const res = await fetch("https://dog.ceo/api/breeds/image/random");
+        const data = await res.json();
+        if (data && data.message) {
+          return data.message;
+        }
+      } else if (cat === "foxes") {
+        // RandomFox API (Ekstra Canlı Doğal Hayvan Kaynağı)
+        try {
+          const res = await fetch("https://randomfox.ca/floof/");
+          const data = await res.json();
+          if (data && data.image) {
+            return data.image;
+          }
+        } catch { }
+        return "https://picsum.photos/1920/1080?nature,animal&random=" + cacheBuster;
+      } else if (cat === "anime") {
+        // Nekos.life API (Masaüstü uygulamamızın kullandığı resmi kaynak)
+        const res = await fetch("https://nekos.life/api/v2/img/wallpaper");
+        const data = await res.json();
+        if (data && data.url) {
+          return data.url;
+        }
+      } else if (cat === "nasa") {
+        // NASA Astronomy Picture of the Day API
+        try {
+          const res = await fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY");
+          const data = await res.json();
+          if (data && (data.hdurl || data.url)) {
+            return data.hdurl || data.url;
+          }
+        } catch { }
+        return "https://picsum.photos/1920/1080?space&random=" + cacheBuster;
+      } else if (cat === "unsplash") {
+        // Unsplash Doğa / Manzara
+        return "https://picsum.photos/1920/1080?nature,forest&random=" + cacheBuster;
+      } else if (cat === "wallhaven") {
+        // Wallhaven doğa / soyut koleksiyonundan yüksek çözünürlüklü seçki
+        const wallhavenCurated = [
+          "https://w.wallhaven.cc/full/85/wallhaven-8586my.jpg",
+          "https://w.wallhaven.cc/full/2e/wallhaven-2exmzm.jpg",
+          "https://w.wallhaven.cc/full/ex/wallhaven-ex9mrr.jpg",
+          "https://w.wallhaven.cc/full/9m/wallhaven-9mjoy8.png",
+          "https://w.wallhaven.cc/full/l8/wallhaven-l8e2vl.jpg"
+        ];
+        return wallhavenCurated[Math.floor(Math.random() * wallhavenCurated.length)];
+      } else if (cat === "bing") {
+        // Bing Daily Wallpaper CDN / Doğa
+        return "https://picsum.photos/1920/1080?nature,landscape&random=" + cacheBuster;
+      } else if (cat === "picsum") {
+        // Picsum Photos 1920x1080 HD
+        return "https://picsum.photos/1920/1080?random=" + cacheBuster;
+      }
+    } catch (e) {
+      console.warn("API Hatası, Picsum yedeğine geçiliyor:", e);
+    }
+    return "https://picsum.photos/1920/1080?random=" + cacheBuster;
+  }
+
+  async function loadWallpaper(cat) {
+    simLoader.style.display = "block";
+    simImg.style.opacity = "0.2";
+
+    const targetUrl = await fetchLiveWallpaper(cat);
+
+    const preloader = new Image();
+    preloader.src = targetUrl;
+    preloader.onload = () => {
+      simImg.src = targetUrl;
+      simImg.style.opacity = "1";
+      simLoader.style.display = "none";
+    };
+    preloader.onerror = () => {
+      // Hata durumunda güvenilir Picsum fallback
+      const fallbackUrl = "https://picsum.photos/1920/1080?random=" + Date.now();
+      simImg.src = fallbackUrl;
+      simImg.style.opacity = "1";
+      simLoader.style.display = "none";
+    };
+  }
+
+  if (simOverlay) {
+    // Sayfa acildiginda otomatik olarak ilk canli gorseli yukle (Her zaman acik ve aktif)
+    loadWallpaper(currentCategory);
+
+    if (btnLiveDemo) {
+      btnLiveDemo.addEventListener("click", () => {
+        // Canli Onizleme alanina akici kaydir ve yeni bir gorsel cek
+        const previewSec = document.getElementById("preview-section") || simOverlay;
+        previewSec.scrollIntoView({ behavior: "smooth", block: "center" });
+        loadWallpaper(currentCategory);
+      });
+    }
+
+    tagBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        tagBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        currentCategory = btn.dataset.src;
+        loadWallpaper(currentCategory);
+      });
+    });
+
+    if (btnRefreshSim) {
+      btnRefreshSim.addEventListener("click", () => {
+        loadWallpaper(currentCategory);
+      });
+    }
+  }
+
+  // Theme Factory Dinamik Tema Değiştirici Mantığı
+  let currentTheme = localStorage.getItem("haytool_web_theme") || "tech-innovation";
+
+  function applyTheme(themeKey) {
+    currentTheme = themeKey;
+    localStorage.setItem("haytool_web_theme", themeKey);
+    document.documentElement.setAttribute("data-theme", themeKey);
+
+    // Navbar select dropdown eşitle
+    const themeSelect = document.getElementById("theme-selector");
+    if (themeSelect) {
+      themeSelect.value = themeKey;
+    }
+
+    // Showcase chip butonları eşitle
+    document.querySelectorAll(".theme-chip-btn").forEach(chip => {
+      chip.classList.toggle("active", chip.dataset.themeVal === themeKey);
+    });
+  }
+
+  // İlk yüklemede temayı uygula
+  applyTheme(currentTheme);
+
+  // Navbar dropdown değiştiğinde
+  const themeSelect = document.getElementById("theme-selector");
+  if (themeSelect) {
+    themeSelect.addEventListener("change", (e) => {
+      applyTheme(e.target.value);
+    });
+  }
+
+  // Showcase chip butonlarına tıklandığında
+  document.querySelectorAll(".theme-chip-btn").forEach(chip => {
+    chip.addEventListener("click", () => {
+      applyTheme(chip.dataset.themeVal);
+    });
+  });
 });

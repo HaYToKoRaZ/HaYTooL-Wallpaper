@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" data-theme="tech-innovation">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,12 @@
   <link rel="alternate" hreflang="en" href="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
   <link rel="alternate" hreflang="x-default" href="https://haytokoraz.github.io/HaYTooL-Wallpaper/">
 
-  <link rel="icon" type="image/x-icon" href="logo.ico">
+  <!-- Favicon & App Icons (Standard & Modern Browsers) -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="shortcut icon" href="favicon.ico">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -72,16 +77,33 @@
         <span>HaYTooL Wallpaper</span>
       </a>
       <div class="nav-actions">
+        <!-- Theme Factory Navbar Dropdown -->
+        <div class="theme-picker-wrapper" title="Theme Factory: 10 Renk Teması">
+          <span class="theme-picker-label" aria-hidden="true">🎨</span>
+          <select id="theme-selector" class="theme-select" aria-label="Renk Temasını Değiştir">
+            <option value="tech-innovation">Tech Innovation (Siber)</option>
+            <option value="midnight-galaxy">Midnight Galaxy (Kozmik)</option>
+            <option value="ocean-depths">Ocean Depths (Okyanus)</option>
+            <option value="sunset-boulevard">Sunset Boulevard (Günbatımı)</option>
+            <option value="forest-canopy">Forest Canopy (Orman)</option>
+            <option value="golden-hour">Golden Hour (Altın Saat)</option>
+            <option value="modern-minimalist">Modern Minimalist (Aydınlık)</option>
+            <option value="arctic-frost">Arctic Frost (Kutup)</option>
+            <option value="desert-rose">Desert Rose (Gül)</option>
+            <option value="botanical-garden">Botanical Garden (Botanik)</option>
+          </select>
+        </div>
+
         <a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer" class="portal-nav-btn" data-i18n="navPortal" aria-label="HaYTooL PoRTaL Ana Sayfasını Aç">
           🌐 HaYTooL PoRTaL
         </a>
         <div class="lang-switcher" role="group" aria-label="Dil Seçici / Language Switcher">
           <button class="lang-btn active" data-lang="TR" title="Türkçe" aria-label="Türkçe Dilini Seç">
-            <img src="flags/tr.svg" alt="Türkçe Bayrağı" class="flag-img" width="20" height="14">
+            <img src="flags/tr.svg" alt="Türkçe Bayrağı" class="flag-img" width="18" height="13">
             <span>TR</span>
           </button>
           <button class="lang-btn" data-lang="EN" title="English" aria-label="Switch to English">
-            <img src="flags/gb.svg" alt="English Flag" class="flag-img" width="20" height="14">
+            <img src="flags/gb.svg" alt="English Flag" class="flag-img" width="18" height="13">
             <span>EN</span>
           </button>
         </div>
@@ -123,15 +145,103 @@
             <span aria-hidden="true">⭐</span>
             <span data-i18n="btnGithub">GitHub Deposu</span>
           </a>
+          <button id="btn-live-demo" class="btn-interactive" aria-label="Canlı Duvar Kağıdı Önizlemesini Dene">
+            <span aria-hidden="true">✨</span>
+            <span data-i18n="btnLiveDemo">Canlı Önizlemeyi Dene</span>
+          </button>
+        </div>
+
+        <!-- Canlı Performans ve Tasarruf Sayaçları -->
+        <div class="stats-pills">
+          <div class="stat-pill">
+            <span class="stat-num glow-green">0 MB</span>
+            <span class="stat-label" data-i18n="statRam">Arka Plan RAM</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num glow-cyan">%0.0</span>
+            <span class="stat-label" data-i18n="statCpu">Boşta CPU Tüketimi</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num glow-purple">&lt; 1.5 sn</span>
+            <span class="stat-label" data-i18n="statSpeed">Açılış Değişim Hızı</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num glow-amber">6+</span>
+            <span class="stat-label" data-i18n="statSources">Dinamik Görsel Havuzu</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Uygulama Ekran Önizlemesi -->
-    <section class="preview-section" aria-label="Uygulama Ekran Görüntüsü">
+    <!-- Theme Factory Showcase Paleti -->
+    <section class="theme-showcase-section" aria-labelledby="themes-heading">
       <div class="container">
-        <div class="preview-card">
-          <img id="preview-img" src="ekrangoruntusu/tr.png" alt="HaYTooL Wallpaper Ayarlar Penceresi Arayüzü" class="preview-img" width="800" height="500" loading="lazy">
+        <h2 id="themes-heading" class="section-title" data-i18n="themesTitle">🎨 10 Harika Renk Teması (Theme Factory)</h2>
+        <p class="section-desc" data-i18n="themesSubtitle">Web sitemizin ve masaüstü ayar programımızın temasını tek tıkla dilediğiniz gibi özelleştirin.</p>
+        <div class="themes-palette-grid" role="group" aria-label="Theme Factory Renk Paletleri">
+          <button class="theme-chip-btn active" data-theme-val="tech-innovation"><span class="theme-swatch" style="background:#06b6d4;"></span> Tech Innovation</button>
+          <button class="theme-chip-btn" data-theme-val="midnight-galaxy"><span class="theme-swatch" style="background:#7c3aed;"></span> Midnight Galaxy</button>
+          <button class="theme-chip-btn" data-theme-val="ocean-depths"><span class="theme-swatch" style="background:#0ea5e9;"></span> Ocean Depths</button>
+          <button class="theme-chip-btn" data-theme-val="sunset-boulevard"><span class="theme-swatch" style="background:#e11d48;"></span> Sunset Boulevard</button>
+          <button class="theme-chip-btn" data-theme-val="forest-canopy"><span class="theme-swatch" style="background:#10b981;"></span> Forest Canopy</button>
+          <button class="theme-chip-btn" data-theme-val="golden-hour"><span class="theme-swatch" style="background:#d97706;"></span> Golden Hour</button>
+          <button class="theme-chip-btn" data-theme-val="modern-minimalist"><span class="theme-swatch" style="background:#4f46e5;"></span> Modern Minimalist</button>
+          <button class="theme-chip-btn" data-theme-val="arctic-frost"><span class="theme-swatch" style="background:#0284c7;"></span> Arctic Frost</button>
+          <button class="theme-chip-btn" data-theme-val="desert-rose"><span class="theme-swatch" style="background:#db2777;"></span> Desert Rose</button>
+          <button class="theme-chip-btn" data-theme-val="botanical-garden"><span class="theme-swatch" style="background:#059669;"></span> Botanical Garden</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Uygulama Ekran Önizlemesi & Kalıcı İnteraktif Simülatör Vitrini -->
+    <section id="preview-section" class="preview-section" aria-label="Uygulama Ekran Görüntüsü ve Canlı Simülatör">
+      <div class="container">
+        <div class="dual-showcase-grid">
+          
+          <!-- Sol Kart: Masaüstü Ayar Programı Arayüzü (376x473 Birebir Boyut) -->
+          <div class="preview-card glow-card app-window-card">
+            <div class="mac-window-bar" aria-hidden="true">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+              <span class="window-title">HaYTooL Wallpaper Setting.exe v1.3</span>
+            </div>
+            <div class="preview-inner">
+              <img id="preview-img" src="ekrangoruntusu/tr.png" alt="HaYTooL Wallpaper Ayarlar Penceresi Arayüzü" class="preview-img" width="376" height="473" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Sağ Kart: Kalıcı ve Her Zaman Açık Canlı Duvar Kağıdı Simülatörü -->
+          <div id="live-desktop-sim" class="preview-card glow-card live-sim-card">
+            <div class="mac-window-bar">
+              <div class="bar-left" aria-hidden="true">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <span class="window-title" data-i18n="simTitle">🖼️ Canlı Duvar Kağıdı Simülasyonu</span>
+              <span class="live-pulse-badge">🔴 CANLI</span>
+            </div>
+            
+            <div class="sim-wallpaper-view" id="sim-view">
+              <div class="sim-wallpaper-loader" id="sim-loader">⏳ <span data-i18n="simLoading">Canlı API'den Duvar Kağıdı Çekiliyor...</span></div>
+              <img id="sim-wallpaper-img" src="" alt="Simülasyon Duvar Kağıdı" class="sim-img">
+            </div>
+            
+            <div class="sim-controls">
+              <button class="sim-tag-btn active" data-src="cats">🐱 Kediler</button>
+              <button class="sim-tag-btn" data-src="dogs">🐶 Köpekler</button>
+              <button class="sim-tag-btn" data-src="foxes">🦊 Tilkiler</button>
+              <button class="sim-tag-btn" data-src="anime">✨ Anime</button>
+              <button class="sim-tag-btn" data-src="nasa">🚀 NASA APOD</button>
+              <button class="sim-tag-btn" data-src="unsplash">🌲 Unsplash Doğa</button>
+              <button class="sim-tag-btn" data-src="wallhaven">🌄 Wallhaven</button>
+              <button class="sim-tag-btn" data-src="bing">🌍 Bing Günün</button>
+              <button class="sim-tag-btn" data-src="picsum">🎨 Picsum</button>
+              <button id="btn-refresh-sim" class="btn-primary sim-next-btn">🎲 <span data-i18n="btnNextWallpaper">Rastgele Yeni Görsel</span></button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -158,12 +268,12 @@
             <p data-i18n="feat3Desc">İnternetiniz kopsa bile C:\0-wallpaper önbelleğinden rastgele bir görsel seçilir; uygulama asla çökmez.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true">🧹</div>
+            <div class="feature-icon" aria-hidden="true">📦</div>
             <h3 class="feature-card-title" data-i18n="feat4Title">100MB Kota Koruması</h3>
             <p data-i18n="feat4Desc">Önbellek boyutu 100MB'ı aştığında otomatik olarak sadece en eski dosyalar temizlenir, diskiniz dolmaz.</p>
           </div>
           <div class="feature-card">
-            <div class="feature-icon" aria-hidden="true">🌍</div>
+            <div class="feature-icon" aria-hidden="true">🌐</div>
             <h3 class="feature-card-title" data-i18n="feat5Title">Çift Dil Arayüzü</h3>
             <p data-i18n="feat5Desc">Ayarlar penceresinden tek tıkla Türkçe ve İngilizce dilleri arasında kolayca geçiş yapabilirsiniz.</p>
           </div>
@@ -211,6 +321,21 @@
             <span class="source-emoji" aria-hidden="true">🐶</span>
             <h3 class="source-item-title" data-i18n="srcDogs">Sadık Köpekler 🐶</h3>
             <span data-i18n="srcDogsDesc">Yüksek çözünürlüklü köpek fotoğrafları</span>
+          </div>
+          <div class="source-item">
+            <span class="source-emoji" aria-hidden="true">🦊</span>
+            <h3 class="source-item-title" data-i18n="srcFoxes">Kurnaz Tilkiler 🦊</h3>
+            <span data-i18n="srcFoxesDesc">Doğal yaşamdan sevimli ve kurnaz tilkiler</span>
+          </div>
+          <div class="source-item">
+            <span class="source-emoji" aria-hidden="true">🚀</span>
+            <h3 class="source-item-title" data-i18n="srcNasa">NASA APOD</h3>
+            <span data-i18n="srcNasaDesc">Günün astronomi ve uzay fotoğrafı</span>
+          </div>
+          <div class="source-item">
+            <span class="source-emoji" aria-hidden="true">🌲</span>
+            <h3 class="source-item-title" data-i18n="srcUnsplash">Unsplash Doğa 🌲</h3>
+            <span data-i18n="srcUnsplashDesc">Seçkin yüksek çözünürlüklü doğa manzaraları</span>
           </div>
         </div>
       </div>
