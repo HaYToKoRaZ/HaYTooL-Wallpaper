@@ -34,7 +34,7 @@ namespace Shared.Services
                     imageUrl = data[0].GetProperty("path").GetString();
                 }
             }
-            else if (source == "Bing günün manzarası")
+            else if (source == "Bing" || source == "Bing günün manzarası" || source == "Bing Günün Manzarası")
             {
                 string apiUrl = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
@@ -53,7 +53,7 @@ namespace Shared.Services
                 using JsonDocument doc = JsonDocument.Parse(jsonResponse);
                 imageUrl = doc.RootElement.GetProperty("url").GetString();
             }
-            else if (source == "Cats")
+            else if (source == "Cats" || source == "Sevimli Kediler 🐱" || source == "Sevimli Kediler")
             {
                 string apiUrl = "https://api.thecatapi.com/v1/images/search?mime_types=jpg,png";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
@@ -63,14 +63,55 @@ namespace Shared.Services
                     imageUrl = doc.RootElement[0].GetProperty("url").GetString();
                 }
             }
-            else if (source == "Dogs")
+            else if (source == "Dogs" || source == "Sadık Köpekler 🐶" || source == "Sadık Köpekler")
             {
                 string apiUrl = "https://dog.ceo/api/breeds/image/random";
                 string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
                 using JsonDocument doc = JsonDocument.Parse(jsonResponse);
                 imageUrl = doc.RootElement.GetProperty("message").GetString();
             }
-            else // Varsayılan Picsum
+            else if (source == "Foxes" || source == "Kurnaz Tilkiler 🦊" || source == "Kurnaz Tilkiler")
+            {
+                // RandomFox API (Ekstra Canlı Doğal Hayvan Kaynağı)
+                try
+                {
+                    string apiUrl = "https://randomfox.ca/floof/";
+                    string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
+                    using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                    imageUrl = doc.RootElement.GetProperty("image").GetString();
+                }
+                catch { }
+            }
+            else if (source == "NASA APOD" || source == "NASA APOD 🚀")
+            {
+                // NASA Astronomy Picture of the Day
+                try
+                {
+                    string apiUrl = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+                    string jsonResponse = await HttpClient.GetStringAsync(apiUrl);
+                    using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                    var root = doc.RootElement;
+                    if (root.TryGetProperty("media_type", out var mediaType) && mediaType.GetString() == "image")
+                    {
+                        if (root.TryGetProperty("hdurl", out var hdurl) && !string.IsNullOrEmpty(hdurl.GetString()))
+                            imageUrl = hdurl.GetString();
+                        else if (root.TryGetProperty("url", out var url))
+                            imageUrl = url.GetString();
+                    }
+                }
+                catch { }
+
+                // Eger APOD video ise veya erisilemezse yedek uzay gorseli
+                if (string.IsNullOrEmpty(imageUrl))
+                {
+                    imageUrl = "https://picsum.photos/3840/2160?space";
+                }
+            }
+            else if (source == "Unsplash Doğa" || source == "Unsplash Nature")
+            {
+                imageUrl = "https://picsum.photos/3840/2160?nature";
+            }
+            else // Varsayilan Picsum
             {
                 imageUrl = "https://picsum.photos/3840/2160";
             }

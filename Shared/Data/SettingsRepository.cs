@@ -34,5 +34,11 @@ namespace Shared.Data
             get => _ini.Read("Category", Section, "Nature");
             set => _ini.Write("Category", value, Section);
         }
+
+        public string Theme
+        {
+            get => _ini.Read("Theme", Section, "Modern Minimalist");
+            set => _ini.Write("Theme", value, Section);
+        }
     }
 }

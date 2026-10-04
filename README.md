@@ -41,13 +41,17 @@ HaYTooL Wallpaper is **NOT** a bloated background service that constantly sits i
 ## 🌟 Features (English)
 
 - **Dual Language Support:** Turkish and English UI via the Settings app.
-- **Rich Source Options:** Choose from 6 different sources:
+- **Theme Factory (10 Curated Themes):** Choose your favorite theme (Modern Minimalist, Midnight Galaxy, Ocean Depths, Sunset Boulevard, Forest Canopy, Tech Innovation, Golden Hour, Arctic Frost, Desert Rose, Botanical Garden) with live color customization.
+- **Rich Source Options:** Choose from 9 different sources:
   - **Wallhaven:** Professional wallpapers with categories (Nature, Space, Cars, Cyberpunk, etc.).
-  - **Bing Image of the Day:** Microsoft Bing's daily beautiful landscape photos.
-  - **Picsum:** Completely random art images.
+  - **Bing Daily Image:** Microsoft Bing's daily beautiful landscape photos.
+  - **Picsum:** Completely random art & landscape images.
   - **Anime:** High-quality anime drawings powered by Nekos.Life.
-  - **Cats:** Cute cat photos.
-  - **Dogs:** Cute dog photos.
+  - **Cats:** Cute cat photos (TheCatAPI).
+  - **Dogs:** Cute dog photos (Dog CEO).
+  - **Foxes:** Charming wild fox photography (RandomFox).
+  - **NASA APOD:** Astronomy Picture of the Day from NASA's deep space observatory.
+  - **Unsplash Nature:** Curated high-resolution landscapes and wilderness.
 - **Smart Offline Support (Fallback):** Downloaded wallpapers are cached in `C:\0-wallpaper`. If your internet drops or a server error occurs, the application never crashes; it automatically picks a random old image from the cache and sets it as the wallpaper.
 - **Quota Management:** When the cache folder exceeds 100MB, it smartly manages space by deleting only the oldest files.
 - **System Startup & Context Menu:** Easily add to the registry to change the background automatically when the computer boots, or add a right-click option on your desktop to change wallpapers instantly.
@@ -76,7 +80,7 @@ The project consists of 2 main executables (`.exe`):
 
 ---
 
-# HaYTooL Wallpaper (v1.2) 🇹🇷
+# HaYTooL Wallpaper (v1.3) 🇹🇷
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -90,7 +94,7 @@ The project consists of 2 main executables (`.exe`):
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Yerel%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.2-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.3-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
 </p>
@@ -115,13 +119,17 @@ HaYTooL Wallpaper, arka planda sürekli çalışıp RAM'inizi ve işlemcinizi me
 ## 🌟 Özellikler (Türkçe)
 
 - **Çift Dil Desteği:** Türkçe ve İngilizce arayüz (Ayarlar üzerinden).
-- **Zengin Kaynak Seçenekleri:** 6 farklı kaynaktan dilediğinizi seçin:
+- **Theme Factory (10 Özel Renk Teması):** Arayüzünüzü 10 farklı profesyonel temayla (Modern Minimalist, Midnight Galaxy, Ocean Depths, Sunset Boulevard, Forest Canopy, Tech Innovation, Golden Hour, Arctic Frost, Desert Rose, Botanical Garden) anında kişiselleştirin.
+- **Zengin Kaynak Seçenekleri:** 9 farklı kaynaktan dilediğinizi seçin:
   - **Wallhaven:** Kategorili (Doğa, Uzay, Arabalar, Siberpunk vb.) profesyonel duvar kağıtları.
   - **Bing Günün Manzarası:** Microsoft Bing'in günlük harika fotoğrafları.
-  - **Picsum:** Tamamen rastgele sanat kareleri.
+  - **Picsum:** Tamamen rastgele sanat ve manzara kareleri.
   - **Anime:** Nekos.Life destekli yüksek kalite anime çizimleri.
-  - **Cats:** Sevimli kedi fotoğrafları.
-  - **Dogs:** Sevimli köpek fotoğrafları.
+  - **Sevimli Kediler 🐱:** Sevimli kedi fotoğrafları (TheCatAPI).
+  - **Sadık Köpekler 🐶:** Sevimli köpek fotoğrafları (Dog CEO).
+  - **Kurnaz Tilkiler 🦊:** Sevimli tilki ve vahşi yaşam fotoğrafları (RandomFox).
+  - **NASA APOD 🚀:** NASA'nın Günün Astronomi ve Uzay Fotoğrafı servisi.
+  - **Unsplash Doğa 🌲:** Yüksek çözünürlüklü doğa ve manzara fotoğrafları.
 - **Akıllı Çevrimdışı (Offline) Destek:** İndirilen duvar kağıtları `C:\0-wallpaper` önbelleğine (cache) kaydedilir. İnternetiniz koptuğunda veya sunucu hatası yaşandığında uygulama asla çökmez; otomatik olarak önbellekteki eski resimlerden birini rastgele seçerek masaüstünüzü değiştirir.
 - **Kota Yönetimi:** Önbellek klasörü 100MB'ı geçtiğinde, sadece en eski dosyalar silinerek akıllıca bir alan yönetimi yapılır.
 - **Sistem Başlangıcı ve Sağ Tık Menüsü:** Bilgisayar açıldığında otomatik çalışması için başlangıca ekleyebilir veya masaüstünüze sağ tıkladığınızda duvar kağıdını anında değiştirecek bir kısayol oluşturabilirsiniz.

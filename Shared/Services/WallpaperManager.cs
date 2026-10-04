@@ -37,7 +37,7 @@ namespace Shared.Services
 
             if (!string.IsNullOrEmpty(pathToSet) && File.Exists(pathToSet))
             {
-                string style = (source == "Cats" || source == "Dogs") ? "6" : "10"; // 6: Fit, 10: Fill
+                string style = (source == "Cats" || source == "Dogs" || source == "Sevimli Kediler 🐱" || source == "Sadık Köpekler 🐶") ? "6" : "10"; // 6: Fit, 10: Fill
                 NativeMethods.ApplyWallpaper(pathToSet, style);
             }
 
