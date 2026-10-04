@@ -136,11 +136,20 @@ const i18n = {
   }
 };
 
-let currentLang = localStorage.getItem("haytool_lang") || "TR";
+const urlParams = new URLSearchParams(window.location.search);
+const urlLang = urlParams.get("lang");
+let currentLang = (urlLang && (urlLang.toUpperCase() === "EN" || urlLang.toUpperCase() === "TR")) 
+  ? urlLang.toUpperCase() 
+  : (localStorage.getItem("haytool_lang") || "TR");
 
 function setLanguage(lang) {
   currentLang = lang;
   localStorage.setItem("haytool_lang", lang);
+
+  // URL'deki query parametresini guncelle (sayfa yenilenmeden)
+  const newUrl = new URL(window.location.href);
+  newUrl.searchParams.set("lang", lang.toLowerCase());
+  window.history.replaceState({}, "", newUrl.toString());
 
   // Buton aktifliklerini ve aria-pressed değerlerini ayarla
   document.querySelectorAll(".lang-btn").forEach(btn => {
