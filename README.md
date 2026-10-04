@@ -1,7 +1,7 @@
 # HaYTooL Wallpaper (v1.3) 🌍
 
 <p align="center">
-  <img src="logo.png" width="128">
+  <img src="logo.png" alt="HaYTooL Wallpaper Logo" width="128">
 </p>
 
 <p align="center">
@@ -14,14 +14,14 @@
   <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
   <img src="https://img.shields.io/badge/Version-v1.3-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
-  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&logo=github&color=2ea44f&label=LATEST%20DOWNLOADS" alt="Latest Release Downloads" /></a>
-  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/total?style=for-the-badge&logo=github&color=0969da&label=TOTAL%20DOWNLOADS" alt="Total Downloads" /></a>
-  <a href="https://haytokoraz.github.io/" target="_blank"><img src="assets/badges/portal.svg" alt="HaYTooL PoRTaL" /></a>
+  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest" title="Download latest release of HaYTooL Wallpaper"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&logo=github&color=2ea44f&label=LATEST%20DOWNLOADS" alt="Latest Release Downloads" /></a>
+  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases" title="Download all releases of HaYTooL Wallpaper"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/total?style=for-the-badge&logo=github&color=0969da&label=TOTAL%20DOWNLOADS" alt="Total Downloads" /></a>
+  <a href="https://haytokoraz.github.io/" target="_blank" rel="noopener noreferrer" title="Visit HaYTooL PoRTaL"><img src="assets/badges/portal.svg" alt="HaYTooL PoRTaL" /></a>
 </p>
 
 ---
 
-### 🌐 HaYTooL Ecosystem & PoRTaL
+## 🌐 HaYTooL Ecosystem & PoRTaL
 Discover all our tools, scripts, and utilities under one roof at the official **[HaYTooL PoRTaL](https://haytokoraz.github.io/)**!  
 You can also visit the official web page of this project on GitHub Pages.
 
@@ -80,10 +80,10 @@ The project consists of 2 main executables (`.exe`):
 
 ---
 
-# HaYTooL Wallpaper (v1.3) 🇹🇷
+## HaYTooL Wallpaper (v1.3) 🇹🇷
 
 <p align="center">
-  <img src="logo.png" width="128">
+  <img src="logo.png" alt="HaYTooL Wallpaper Logo" width="128">
 </p>
 
 <p align="center">
@@ -96,12 +96,12 @@ The project consists of 2 main executables (`.exe`):
   <img src="https://img.shields.io/badge/Downloader-Yerel%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
   <img src="https://img.shields.io/badge/Version-v1.3-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
-  <img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" />
+  <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest" title="En son HaYTooL Wallpaper sürümünü indir"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&color=blueviolet" alt="GitHub İndirmeleri (en son sürüm)" /></a>
 </p>
 
 ---
 
-### 🌐 HaYTooL Ekosistemi & PoRTaL
+## 🌐 HaYTooL Ekosistemi & PoRTaL
 Geliştirdiğimiz tüm araçlara, betiklere ve uygulamalara tek bir merkezden erişmek için resmi **[HaYTooL PoRTaL](https://haytokoraz.github.io/)** sayfamızı ziyaret edin!  
 Ayrıca bu projenin GitHub Pages tanıtım sitesine de oradan veya proje bağlantılarından ulaşabilirsiniz.
 
