@@ -72,13 +72,15 @@ namespace Setting
 
         private void InitializeComponentUI()
         {
-            this.Size = new Size(365, 360);
+            this.Size = new Size(390, 420);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
+            this.Font = new Font("Segoe UI", 9.5f, FontStyle.Regular);
+            this.BackColor = Color.FromArgb(248, 249, 250);
 
-            lblLanguage = new Label { Location = new Point(20, 15), AutoSize = true };
-            cbLanguage = new ComboBox { Location = new Point(20, 35), Width = 310, DropDownStyle = ComboBoxStyle.DropDownList };
+            lblLanguage = new Label { Location = new Point(20, 15), AutoSize = true, Font = new Font("Segoe UI", 9.5f, FontStyle.Bold), ForeColor = Color.FromArgb(30, 41, 59) };
+            cbLanguage = new ComboBox { Location = new Point(20, 38), Width = 330, Height = 32, DropDownStyle = ComboBoxStyle.DropDownList, Font = new Font("Segoe UI", 9.5f) };
             cbLanguage.Items.AddRange(new[] { "Türkçe (TR)", "English (EN)" });
             cbLanguage.SelectedIndex = (lang == "EN") ? 1 : 0;
             cbLanguage.SelectedIndexChanged += (s, e) => { 
@@ -86,15 +88,15 @@ namespace Setting
                 UpdateLanguage(); 
             };
 
-            lblSource = new Label { Location = new Point(20, 70), AutoSize = true };
-            cbSource = new ComboBox { Location = new Point(20, 90), Width = 310, DropDownStyle = ComboBoxStyle.DropDownList };
+            lblSource = new Label { Location = new Point(20, 78), AutoSize = true, Font = new Font("Segoe UI", 9.5f, FontStyle.Bold), ForeColor = Color.FromArgb(30, 41, 59) };
+            cbSource = new ComboBox { Location = new Point(20, 101), Width = 330, Height = 32, DropDownStyle = ComboBoxStyle.DropDownList, Font = new Font("Segoe UI", 9.5f) };
             cbSource.Items.AddRange(new[] { "Wallhaven", "Bing günün manzarası", "Picsum", "Anime", "Cats", "Dogs" });
             cbSource.SelectedIndexChanged += CbSource_SelectedIndexChanged;
 
-            lblCategory = new Label { Location = new Point(20, 125), AutoSize = true };
-            cbCategory = new ComboBox { Location = new Point(20, 145), Width = 310, DropDownStyle = ComboBoxStyle.DropDownList };
+            lblCategory = new Label { Location = new Point(20, 141), AutoSize = true, Font = new Font("Segoe UI", 9.5f, FontStyle.Bold), ForeColor = Color.FromArgb(30, 41, 59) };
+            cbCategory = new ComboBox { Location = new Point(20, 164), Width = 330, Height = 32, DropDownStyle = ComboBoxStyle.DropDownList, Font = new Font("Segoe UI", 9.5f) };
             
-            chkStartup = new CheckBox { Location = new Point(20, 175), AutoSize = true };
+            chkStartup = new CheckBox { Location = new Point(20, 206), AutoSize = true, Cursor = Cursors.Hand, Font = new Font("Segoe UI", 9.5f) };
             chkStartup.CheckedChanged += (s, e) => {
                 if (lang == "EN")
                 {
@@ -105,12 +107,22 @@ namespace Setting
                     chkStartup.Text = chkStartup.Checked ? "Sistem açılışında çalıştır ve kapat" : "Sistem açılışında çalıştır ve kapat (Kapalı)";
                 }
             };
-            chkContextMenu = new CheckBox { Location = new Point(20, 200), AutoSize = true };
+            chkContextMenu = new CheckBox { Location = new Point(20, 236), AutoSize = true, Cursor = Cursors.Hand, Font = new Font("Segoe UI", 9.5f) };
 
-            btnSave = new Button { Location = new Point(20, 235), Width = 310, Height = 35 };
+            btnSave = new Button { 
+                Location = new Point(20, 276), 
+                Width = 330, 
+                Height = 44, 
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(79, 70, 229),
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 10.5f, FontStyle.Bold),
+                Cursor = Cursors.Hand
+            };
+            btnSave.FlatAppearance.BorderSize = 0;
             btnSave.Click += BtnSave_Click;
 
-            lblUpdate = new LinkLabel { Location = new Point(20, 280), AutoSize = true, Visible = false };
+            lblUpdate = new LinkLabel { Location = new Point(20, 335), AutoSize = true, Visible = false, Font = new Font("Segoe UI", 9.0f) };
             lblUpdate.LinkClicked += (s, e) => { Process.Start(new ProcessStartInfo("https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases") { UseShellExecute = true }); };
 
             this.Controls.Add(lblLanguage);
@@ -198,27 +210,39 @@ namespace Setting
 
         private async void BtnSave_Click(object sender, EventArgs e)
         {
-            _settings.Language = lang;
-            _settings.Source = cbSource.SelectedItem?.ToString() ?? "Wallhaven";
-            
-            if (cbSource.SelectedItem?.ToString() == "Wallhaven")
-            {
-                _settings.Category = cbCategory.SelectedItem?.ToString() ?? "Nature";
-            }
+            btnSave.Enabled = false;
+            string originalText = btnSave.Text;
+            btnSave.Text = lang == "EN" ? "Saving..." : "Kaydediliyor...";
 
-            RegistryService.SetStartup(chkStartup.Checked);
-            RegistryService.SetContextMenu(chkContextMenu.Checked, lang);
-
-            string successMsg = lang == "EN" ? "Settings saved! Applying wallpaper now..." : "Ayarlar kaydedildi! Duvar kağıdı şimdi uygulanıyor...";
-            string successTitle = lang == "EN" ? "Success" : "Başarılı";
-            MessageBox.Show(successMsg, successTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // Ayarlar kaydedildikten sonra yeni arka planı hemen uygula
             try
             {
-                await WallpaperManager.ExecuteAsync();
+                _settings.Language = lang;
+                _settings.Source = cbSource.SelectedItem?.ToString() ?? "Wallhaven";
+                
+                if (cbSource.SelectedItem?.ToString() == "Wallhaven")
+                {
+                    _settings.Category = cbCategory.SelectedItem?.ToString() ?? "Nature";
+                }
+
+                RegistryService.SetStartup(chkStartup.Checked);
+                RegistryService.SetContextMenu(chkContextMenu.Checked, lang);
+
+                // Ayarlar kaydedildikten sonra yeni arka planı hemen uygula
+                try
+                {
+                    await WallpaperManager.ExecuteAsync();
+                }
+                catch { }
+
+                string successMsg = lang == "EN" ? "Settings saved! Wallpaper applied successfully." : "Ayarlar kaydedildi! Duvar kağıdı başarıyla uygulandı.";
+                string successTitle = lang == "EN" ? "Success" : "Başarılı";
+                MessageBox.Show(successMsg, successTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch { }
+            finally
+            {
+                btnSave.Text = originalText;
+                btnSave.Enabled = true;
+            }
         }
     }
 }

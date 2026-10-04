@@ -7,7 +7,7 @@ namespace Setting.Services
 {
     public static class UpdateService
     {
-        public const string CurrentVersion = "v1.2";
+        public const string CurrentVersion = "v1.3";
         private const string RepoUrl = "https://api.github.com/repos/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest";
 
         public class UpdateCheckResult

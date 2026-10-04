@@ -1,4 +1,4 @@
-# HaYTooL Wallpaper (v1.2) 🌍
+# HaYTooL Wallpaper (v1.3) 🌍
 
 <p align="center">
   <img src="logo.png" width="128">
@@ -12,7 +12,7 @@
   <br>
   <img src="https://img.shields.io/badge/UI-Windows%20Forms-1572B6?style=for-the-badge" alt="UI" />
   <img src="https://img.shields.io/badge/Downloader-Native%20HTTP-4af626?style=for-the-badge" alt="Downloader" />
-  <img src="https://img.shields.io/badge/Version-v1.2-purple?style=for-the-badge&logo=git" alt="Version" />
+  <img src="https://img.shields.io/badge/Version-v1.3-purple?style=for-the-badge&logo=git" alt="Version" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License" />
   <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases/latest"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/latest/total?style=for-the-badge&logo=github&color=2ea44f&label=LATEST%20DOWNLOADS" alt="Latest Release Downloads" /></a>
   <a href="https://github.com/HaYToKoRaZ/HaYTooL-Wallpaper/releases"><img src="https://img.shields.io/github/downloads/HaYToKoRaZ/HaYTooL-Wallpaper/total?style=for-the-badge&logo=github&color=0969da&label=TOTAL%20DOWNLOADS" alt="Total Downloads" /></a>
